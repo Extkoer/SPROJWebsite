@@ -15,23 +15,26 @@
     <!-- CO2 Emissions Button -->
     <div id="hero-co2" class="relative group cursor-pointer hero-button" onclick="transitionToSection('co2')">
       <div class="h-full bg-cover bg-center transition-transform duration-700" style="background-image: url('co2-image.jpg');">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
-          <h1 class="text-4xl font-bold">CO2 Emissions</h1>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
+          <h1 class="text-4xl font-extrabold tracking-wider">CO2 Emissions</h1>
         </div>
       </div>
     </div>
     <!-- Stock Market Button -->
     <div id="hero-stock" class="relative group cursor-pointer hero-button" onclick="transitionToSection('stock')">
       <div class="h-full bg-cover bg-center transition-transform duration-700" style="background-image: url('stock-image.jpg');">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
-          <h1 class="text-4xl font-bold">Stock Market</h1>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
+          <h1 class="text-4xl font-extrabold tracking-wider">Stock Market</h1>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Sidebar -->
-  <div id="sidebar" class="fixed top-1/4 right-4 w-20 h-auto bg-gray-100 rounded-full shadow-lg p-4 flex flex-col items-center space-y-4 hidden">
+  <div id="sidebar" class="fixed top-1/4 left-4 w-20 h-auto bg-gray-100 rounded-full shadow-2xl p-4 flex flex-col items-center space-y-4 hidden">
+    <button class="chapter flex items-center px-2 py-2 space-x-2" onclick="goHome()">
+      <span class="text-sm font-bold">Home</span>
+    </button>
     <div>
       <button id="sidebar-co2" class="chapter active flex items-center px-2 py-2 space-x-2" onclick="showSection('co2')">
         <span class="text-sm font-bold">CO2</span>
@@ -55,27 +58,27 @@
   <!-- Main Content -->
   <main id="main-content" class="hidden transition-opacity duration-700">
     <!-- CO2 Emissions Section -->
-    <section id="section-co2" class="hidden p-8">
-      <h1 class="text-4xl font-bold mb-6 text-green-600">CO2 Emissions</h1>
+    <section id="section-co2" class="hidden p-8 bg-gradient-to-r from-green-400 to-green-600 text-white shadow-lg">
+      <h1 class="text-4xl font-extrabold mb-6">CO2 Emissions</h1>
       <div id="subsection-co2-1" class="mt-8">
-        <h2 class="text-2xl font-bold">CO2 Trends</h2>
-        <canvas id="co2Chart" class="w-full max-w-4xl mt-4"></canvas>
+        <h2 class="text-2xl font-bold underline decoration-white">CO2 Trends</h2>
+        <canvas id="co2Chart" class="w-full max-w-4xl mt-4 shadow-lg"></canvas>
       </div>
       <div id="subsection-co2-2" class="hidden mt-8">
-        <h2 class="text-2xl font-bold">Emission Sources</h2>
+        <h2 class="text-2xl font-bold underline decoration-white">Emission Sources</h2>
         <p>Details about emission sources...</p>
       </div>
     </section>
 
     <!-- Stock Market Section -->
-    <section id="section-stock" class="hidden p-8">
-      <h1 class="text-4xl font-bold mb-6 text-blue-600">Stock Market</h1>
+    <section id="section-stock" class="hidden p-8 bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg">
+      <h1 class="text-4xl font-extrabold mb-6">Stock Market</h1>
       <div id="subsection-stock-1" class="mt-8">
-        <h2 class="text-2xl font-bold">Market Trends</h2>
-        <canvas id="stockChart" class="w-full max-w-4xl mt-4"></canvas>
+        <h2 class="text-2xl font-bold underline decoration-white">Market Trends</h2>
+        <canvas id="stockChart" class="w-full max-w-4xl mt-4 shadow-lg"></canvas>
       </div>
       <div id="subsection-stock-2" class="hidden mt-8">
-        <h2 class="text-2xl font-bold">Carbon Policy Effects</h2>
+        <h2 class="text-2xl font-bold underline decoration-white">Carbon Policy Effects</h2>
         <p>Details about the effects of carbon policies...</p>
       </div>
     </section>
@@ -84,6 +87,7 @@
   <script src="scripts.js"></script>
 </body>
 </html>
+
 
 
 

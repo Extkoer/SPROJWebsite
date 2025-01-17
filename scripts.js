@@ -30,9 +30,17 @@ function showSubsection(subsection) {
   document.getElementById(`subsection-${subsection}`).classList.remove('hidden');
 }
 
+function goHome() {
+  document.getElementById('hero').style.display = 'grid';
+  document.getElementById('main-content').classList.add('hidden');
+  document.getElementById('main-content').classList.remove('active');
+  document.getElementById('sidebar').classList.add('hidden');
+}
+
 // Initial State
 showSection('co2');
 showSubsection('co2-1');
+
 
 
 
