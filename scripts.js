@@ -6,27 +6,13 @@ function showSection(section) {
   // Show the selected section
   document.getElementById(`section-${section}`).classList.remove('hidden');
 
-  // Update sidebar
-  document.querySelectorAll('.chapter').forEach(chapter => chapter.classList.remove('active'));
+  // Update sidebar buttons
+  document.querySelectorAll('#sidebar .chapter').forEach(btn => btn.classList.remove('active'));
   document.getElementById(`sidebar-${section}`).classList.add('active');
-
-  // Expand subsections for the selected section
-  document.querySelectorAll('.subsections').forEach(subsec => subsec.classList.add('hidden'));
-  document.getElementById(`subsections-${section}`).classList.remove('hidden');
 }
 
-// Show a subsection within a section
-function showSubsection(subsection) {
-  // Hide all subsections within the visible section
-  document.querySelectorAll(`#section-${subsection.split('-')[0]} > div`).forEach(subsec => subsec.classList.add('hidden'));
-
-  // Show the selected subsection
-  document.getElementById(`subsection-${subsection}`).classList.remove('hidden');
-}
-
-// Initial load: Show the first section
+// Initial State: Show the first section (CO2 Emissions)
 showSection('co2');
-showSubsection('co2-1');
 
 // Example Chart.js setup
 const co2Ctx = document.getElementById('co2Chart')?.getContext('2d');
@@ -62,4 +48,5 @@ if (stockCtx) {
     },
   });
 }
+
 
