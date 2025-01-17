@@ -5,47 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPROJ: CO2 Emissions & Stock Market</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="font-sans antialiased text-gray-800">
-  <!-- Hero Section -->
-  <header class="h-screen bg-cover bg-center text-white flex flex-col items-center justify-center" style="background-image: url('your-background-image.jpg');">
-    <div class="text-center p-4">
-      <h1 class="text-5xl font-bold drop-shadow-md">Welcome to My SPROJ</h1>
-      <p class="text-xl mt-4 drop-shadow-md">Analyzing CO2 Emissions & Stock Market Trends</p>
-    </div>
-    <div class="mt-8 flex space-x-4">
-      <a href="#section1" class="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg">
-        Explore CO2 Emissions
-      </a>
-      <a href="#section2" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg">
-        Dive into Stock Market
-      </a>
-    </div>
-  </header>
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 border-r border-gray-300 sticky top-0 p-4">
+      <nav>
+        <ul>
+          <!-- Main Sections -->
+          <li id="sidebar-co2" class="chapter">
+            <button class="w-full text-left font-bold py-2" onclick="showSection('co2')">CO2 Emissions</button>
+            <ul id="subsections-co2" class="subsections hidden pl-4 mt-2">
+              <li><button onclick="showSubsection('co2-1')">CO2 Trends</button></li>
+              <li><button onclick="showSubsection('co2-2')">Emission Sources</button></li>
+            </ul>
+          </li>
+          <li id="sidebar-stock" class="chapter mt-4">
+            <button class="w-full text-left font-bold py-2" onclick="showSection('stock')">Stock Market</button>
+            <ul id="subsections-stock" class="subsections hidden pl-4 mt-2">
+              <li><button onclick="showSubsection('stock-1')">Market Trends</button></li>
+              <li><button onclick="showSubsection('stock-2')">Carbon Policy Effects</button></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
-  <!-- Section 1: CO2 Emissions -->
-  <section id="section1" class="bg-gray-100 py-16 px-8">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-gray-800 mb-6">CO2 Emissions</h2>
-      <p class="text-gray-600 mb-8">Explore how industrial activities contribute to CO2 emissions and their trends over time.</p>
-      <canvas id="co2Chart" class="w-full max-w-4xl mx-auto"></canvas>
-    </div>
-  </section>
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <!-- CO2 Emissions Section -->
+      <section id="section-co2" class="hidden p-8">
+        <h1 class="text-4xl font-bold">CO2 Emissions</h1>
+        <div id="subsection-co2-1" class="mt-8">
+          <h2 class="text-2xl font-bold">CO2 Trends</h2>
+          <canvas id="co2Chart" class="w-full max-w-4xl mt-4"></canvas>
+        </div>
+        <div id="subsection-co2-2" class="hidden mt-8">
+          <h2 class="text-2xl font-bold">Emission Sources</h2>
+          <p>Details about emission sources...</p>
+        </div>
+      </section>
 
-  <!-- Section 2: Stock Market -->
-  <section id="section2" class="bg-white py-16 px-8">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-gray-800 mb-6">Stock Market Analysis</h2>
-      <p class="text-gray-600 mb-8">Analyze the connection between carbon policies and stock market performance.</p>
-      <canvas id="stockChart" class="w-full max-w-4xl mx-auto"></canvas>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-4 text-center">
-    <p>&copy; 2025 Your Name. All Rights Reserved.</p>
-  </footer>
+      <!-- Stock Market Section -->
+      <section id="section-stock" class="hidden p-8">
+        <h1 class="text-4xl font-bold">Stock Market</h1>
+        <div id="subsection-stock-1" class="mt-8">
+          <h2 class="text-2xl font-bold">Market Trends</h2>
+          <canvas id="stockChart" class="w-full max-w-4xl mt-4"></canvas>
+        </div>
+        <div id="subsection-stock-2" class="hidden mt-8">
+          <h2 class="text-2xl font-bold">Carbon Policy Effects</h2>
+          <p>Details about the effects of carbon policies...</p>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="scripts.js"></script>
 </body>
