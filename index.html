@@ -3,60 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Storytelling Website</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>SPROJ: CO2 Emissions & Stock Market</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header class="hero-section">
-    <div class="hero-content">
-      <h1>Welcome to My Story</h1>
-      <p>An immersive journey into my SPROJ work</p>
-      <a href="#about" class="cta-button">Learn More</a>
+<body class="font-sans antialiased text-gray-800">
+  <!-- Hero Section -->
+  <header class="h-screen bg-cover bg-center text-white flex items-center justify-center" style="background-image: url('your-background-image.jpg');">
+    <div class="text-center p-4">
+      <h1 class="text-5xl font-bold drop-shadow-md">Welcome to My SPROJ</h1>
+      <p class="text-xl mt-4 drop-shadow-md">Exploring CO2 Emissions & the Stock Market</p>
+      <a href="#section1" class="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow-lg">Learn More</a>
     </div>
   </header>
 
-  <main>
-    <!-- Section 1 -->
-    <section id="about" class="content-section">
-      <div class="text-block">
-        <h2>About the Project</h2>
-        <p>This is where you provide an engaging description of your project. Use a combination of images, text, and interactive elements to captivate your audience.</p>
+  <!-- Section 1: CO2 Emissions -->
+  <section id="section1" class="bg-gray-100 py-16 px-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-4xl font-bold text-gray-800">CO2 Emissions</h2>
+        <p class="mt-4 text-gray-600">This section explores the relationship between industrial activities, transportation, and their contribution to global CO2 emissions. Learn how emissions trends are calculated and monitored using modern tools and datasets.</p>
       </div>
-      <div class="image-block">
-        <img src="placeholder.jpg" alt="Project Preview">
+      <img src="co2-placeholder.jpg" alt="CO2 emissions graph" class="rounded-lg shadow-lg">
+    </div>
+  </section>
+
+  <!-- Section 2: Stock Market -->
+  <section id="section2" class="bg-white py-16 px-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <img src="stock-market-placeholder.jpg" alt="Stock market trends" class="rounded-lg shadow-lg">
+      <div>
+        <h2 class="text-4xl font-bold text-gray-800">Stock Market Analysis</h2>
+        <p class="mt-4 text-gray-600">Discover the connection between macroeconomic factors and stock market trends. This section presents data visualizations and models that analyze market efficiency, returns, and volatility influenced by carbon emission policies.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 2 (Parallax) -->
-    <section class="parallax-section">
-      <div class="overlay">
-        <h2>A Closer Look</h2>
-        <p>Explore the deeper layers of the story with stunning visuals and interactive insights.</p>
-      </div>
-    </section>
-
-    <!-- Section 3 -->
-    <section class="gallery-section">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <img src="image1.jpg" alt="Gallery Image 1">
-        <img src="image2.jpg" alt="Gallery Image 2">
-        <img src="image3.jpg" alt="Gallery Image 3">
-        <img src="image4.jpg" alt="Gallery Image 4">
-      </div>
-    </section>
-
-    <!-- Section 4 -->
-    <section class="cta-section">
-      <h2>Contact Me</h2>
-      <p>Get in touch to collaborate or learn more about my work.</p>
-      <a href="mailto:your-email@example.com" class="cta-button">Email Me</a>
-    </section>
-  </main>
-
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 text-center">
     <p>&copy; 2025 Your Name. All Rights Reserved.</p>
   </footer>
-  <script src="scripts.js"></script>
 </body>
 </html>
+
