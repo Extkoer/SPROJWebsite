@@ -1,46 +1,28 @@
-/* Sidebar Styles */
-#sidebar {
-    width: 80px;
-    padding: 1rem;
-    background: #f3f4f6;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Hero Section Animation */
+.hero-button {
+    overflow: hidden;
   }
   
-  #sidebar .chapter {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: background 0.3s, color 0.3s;
-    cursor: pointer;
+  .hero-button .h-full {
+    transition: transform 0.7s ease-in-out;
   }
   
-  #sidebar .chapter.active {
-    background: #4F46E5;
-    color: white;
-    border-radius: 10px;
+  .hero-button.zoom .h-full {
+    transform: scale(1.2); /* Zoom effect */
   }
   
-  #sidebar .subsections {
-    display: none;
-  }
-  
-  #sidebar .subsections.hidden {
-    display: none;
-  }
-  
-  #sidebar .subsections li {
-    margin-top: 4px;
-  }
-  
-  /* Transition for Main Sections */
-  main > section {
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  main > section.hidden {
+  #main-content {
     opacity: 0;
-    transform: scale(0.95);
+    pointer-events: none;
+    transform: translateY(10px);
   }
+  
+  #main-content.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  
   
   
   
