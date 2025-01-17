@@ -23,6 +23,32 @@
     transform: translateY(0);
   }
   
+  /* Sidebar */
+  #sidebar {
+    width: 80px;
+    padding: 1rem;
+    background: #f3f4f6;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #sidebar .chapter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+  
+  #sidebar .subsections {
+    display: none;
+  }
+  
+  #sidebar .subsections.hidden {
+    display: none;
+  }
+  
+  
   
   
   
