@@ -30,19 +30,33 @@
   </header>
 
   <!-- Cylindrical Sidebar -->
-  <div id="sidebar" class="fixed top-1/4 right-4 w-16 h-auto bg-gray-100 rounded-full shadow-lg p-2 flex flex-col items-center">
-    <button id="sidebar-co2" class="chapter active mb-2" onclick="showSection('co2')">
-      <span class="rotate-90 text-sm font-bold">CO2</span>
-    </button>
-    <button id="sidebar-stock" class="chapter" onclick="showSection('stock')">
-      <span class="rotate-90 text-sm font-bold">Stock</span>
-    </button>
+  <div id="sidebar" class="fixed top-1/4 right-4 w-20 h-auto bg-gray-100 rounded-full shadow-lg p-4 flex flex-col items-center space-y-4">
+    <div class="group">
+      <button id="sidebar-co2" class="chapter active flex items-center px-2 py-2 space-x-2" onclick="showSection('co2')">
+        <div class="w-2 h-10 bg-purple-600 group-hover:bg-purple-800 rounded-full transition"></div>
+        <span class="text-sm font-bold">CO2</span>
+      </button>
+      <ul id="subsections-co2" class="subsections hidden mt-2 pl-4">
+        <li class="text-xs"><button onclick="showSubsection('co2-1')">Trends</button></li>
+        <li class="text-xs mt-1"><button onclick="showSubsection('co2-2')">Sources</button></li>
+      </ul>
+    </div>
+    <div class="group">
+      <button id="sidebar-stock" class="chapter flex items-center px-2 py-2 space-x-2" onclick="showSection('stock')">
+        <div class="w-2 h-10 bg-purple-600 group-hover:bg-purple-800 rounded-full transition"></div>
+        <span class="text-sm font-bold">Stock</span>
+      </button>
+      <ul id="subsections-stock" class="subsections hidden mt-2 pl-4">
+        <li class="text-xs"><button onclick="showSubsection('stock-1')">Trends</button></li>
+        <li class="text-xs mt-1"><button onclick="showSubsection('stock-2')">Policies</button></li>
+      </ul>
+    </div>
   </div>
 
   <!-- Main Content -->
-  <main>
+  <main class="transition-transform duration-700 ease-in-out">
     <!-- CO2 Emissions Section -->
-    <section id="section-co2" class="hidden p-8">
+    <section id="section-co2" class="hidden p-8 opacity-0 transform scale-95">
       <h1 class="text-4xl font-bold">CO2 Emissions</h1>
       <div id="subsection-co2-1" class="mt-8">
         <h2 class="text-2xl font-bold">CO2 Trends</h2>
@@ -55,7 +69,7 @@
     </section>
 
     <!-- Stock Market Section -->
-    <section id="section-stock" class="hidden p-8">
+    <section id="section-stock" class="hidden p-8 opacity-0 transform scale-95">
       <h1 class="text-4xl font-bold">Stock Market</h1>
       <div id="subsection-stock-1" class="mt-8">
         <h2 class="text-2xl font-bold">Market Trends</h2>

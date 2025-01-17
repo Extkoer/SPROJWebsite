@@ -1,34 +1,46 @@
-/* Cylindrical Sidebar */
+/* Sidebar Styles */
 #sidebar {
     width: 80px;
-    height: auto;
-    background: #f9fafb;
-    border-radius: 9999px;
-    padding: 10px 5px;
+    padding: 1rem;
+    background: #f3f4f6;
+    border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   #sidebar .chapter {
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background 0.3s, color 0.3s;
     cursor: pointer;
-    background: transparent;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   }
   
   #sidebar .chapter.active {
     background: #4F46E5;
-    color: #fff;
+    color: white;
+    border-radius: 10px;
   }
   
-  #sidebar .chapter span {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .hidden {
+  #sidebar .subsections {
     display: none;
   }
+  
+  #sidebar .subsections.hidden {
+    display: none;
+  }
+  
+  #sidebar .subsections li {
+    margin-top: 4px;
+  }
+  
+  /* Transition for Main Sections */
+  main > section {
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  main > section.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
   
   

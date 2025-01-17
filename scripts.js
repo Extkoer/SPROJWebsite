@@ -1,52 +1,38 @@
-// Show a section and hide the others
+// Show a section and hide others with a transition
 function showSection(section) {
   // Hide all sections
-  document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+  document.querySelectorAll('main > section').forEach(sec => {
+    sec.classList.add('hidden');
+    sec.style.opacity = 0;
+    sec.style.transform = 'scale(0.95)';
+  });
 
-  // Show the selected section
-  document.getElementById(`section-${section}`).classList.remove('hidden');
+  // Show the selected section with a transition
+  const activeSection = document.getElementById(`section-${section}`);
+  activeSection.classList.remove('hidden');
+  setTimeout(() => {
+    activeSection.style.opacity = 1;
+    activeSection.style.transform = 'scale(1)';
+  }, 50);
 
-  // Update sidebar buttons
+  // Update sidebar
   document.querySelectorAll('#sidebar .chapter').forEach(btn => btn.classList.remove('active'));
   document.getElementById(`sidebar-${section}`).classList.add('active');
+
+  // Toggle subsections
+  document.querySelectorAll('#sidebar .subsections').forEach(sub => sub.classList.add('hidden'));
+  document.getElementById(`subsections-${section}`).classList.remove('hidden');
 }
 
-// Initial State: Show the first section (CO2 Emissions)
+// Show a subsection
+function showSubsection(subsection) {
+  document.querySelectorAll(`#section-${subsection.split('-')[0]} > div`).forEach(div => div.classList.add('hidden'));
+  document.getElementById(`subsection-${subsection}`).classList.remove('hidden');
+}
+
+// Initial State: Show CO2 Section
 showSection('co2');
+showSubsection('co2-1');
 
-// Example Chart.js setup
-const co2Ctx = document.getElementById('co2Chart')?.getContext('2d');
-if (co2Ctx) {
-  new Chart(co2Ctx, {
-    type: 'line',
-    data: {
-      labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
-      datasets: [{
-        label: 'CO2 Emissions (Million Tons)',
-        data: [5000, 5200, 5400, 5600, 5900, 6000],
-        borderColor: 'rgba(34, 197, 94, 1)',
-        backgroundColor: 'rgba(34, 197, 94, 0.2)',
-        borderWidth: 2,
-      }],
-    },
-  });
-}
-
-const stockCtx = document.getElementById('stockChart')?.getContext('2d');
-if (stockCtx) {
-  new Chart(stockCtx, {
-    type: 'bar',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      datasets: [{
-        label: 'Stock Returns (%)',
-        data: [5, 8, -3, 4, 6, 2],
-        backgroundColor: 'rgba(59, 130, 246, 0.8)',
-        borderColor: 'rgba(59, 130, 246, 1)',
-        borderWidth: 1,
-      }],
-    },
-  });
-}
 
 
