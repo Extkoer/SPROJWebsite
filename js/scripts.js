@@ -6,22 +6,18 @@ function transitionToSection(topic) {
   const mainContent = document.getElementById('main-content');
   const sidebar = document.getElementById('sidebar');
   const clickedHero = document.getElementById(`hero-${topic}`);
-  const otherHero = document.querySelectorAll('.hero-button:not(#hero-' + topic + ')');
 
-  clickedHero.style.zIndex = '100';
-  clickedHero.classList.add('expand-center');
+  // Start the expansion animation for the clicked hero area
+  clickedHero.classList.add('expand-full'); // Add class for full-screen expansion
 
-  otherHero.forEach((hero) => {
-    hero.classList.add('shrink-fade-out');
-  });
-
+  // Hide the hero section after the animation completes
   setTimeout(() => {
     heroSection.style.display = 'none';
-    mainContent.style.display = 'block';
-    sidebar.classList.remove('hidden'); // Show the sidebar
+    mainContent.style.display = 'block'; // Show main content
+    sidebar.classList.remove('hidden'); // Show sidebar
     updateSidebar(topic);
     showSlides(topic);
-  }, 1200);
+  }, 1000); // Matches the animation duration
 }
 
 
@@ -30,6 +26,7 @@ function updateSidebar(topic) {
   const sidebarSections = document.getElementById('sidebar-sections');
   sidebarSections.innerHTML = ''; // Clear current content
 
+  // Populate the sidebar with topic-specific sections
   if (topic === 'co2') {
     sidebarSections.innerHTML = `
       <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>

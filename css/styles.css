@@ -39,6 +39,25 @@ html {
   opacity: 1;
 }
 
+.hero-button.expand-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  transform: scale(1.5); /* Slightly larger for smooth expansion */
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8); /* Optional dark overlay */
+  opacity: 1;
+}
+
+/* Fade out other elements */
+.hero-button:not(.expand-full) {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
 /* Shrink and fade out the unclicked button(s) */
 .hero-button.shrink-fade-out {
   transform: scale(0.5);
@@ -133,6 +152,14 @@ html {
 #sidebar {
   transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
+}
+
+#sidebar.show {
+  transform: translateX(0);
+}
+
+#sidebar.hidden {
+  display: none; /* Completely hide sidebar when not needed */
 }
 
 #sidebar.show {
