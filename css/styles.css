@@ -18,7 +18,7 @@ h1, h2, p {
  * HERO SECTION STYLING
  **********************************************/
 
-/* Hero Button Base Styling */
+/* Add jagged border effect using pseudo-elements */
 .hero-button {
   position: relative;
   overflow: hidden;
@@ -72,6 +72,7 @@ h1, h2, p {
   );
 }
 
+/* Jagged border transition for immersive hover */
 .hero-button:hover {
   clip-path: polygon(
     0% 2%, 10% 0%, 20% 2%, 30% 0%, 40% 2%, 
@@ -137,17 +138,6 @@ h1, h2, p {
 /* Gradient Overlay for Hero Buttons */
 .hero-button div {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%);
-}
-
-/* Hero Divider */
-.hero-divider {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: 2px;
-  background: linear-gradient(to bottom, #ffffff, transparent);
 }
 
 /**********************************************
