@@ -61,14 +61,6 @@
         <source src="assets/stockmarket.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <script>
-        const stockVideo = document.querySelector('#hero-stock video');
-        stockVideo.addEventListener('timeupdate', () => {
-          if (stockVideo.currentTime > 4) {
-            stockVideo.currentTime = 0; // Restart the video at 0 seconds
-          }
-        });
-      </script>
       <div 
         class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
                   flex items-center justify-center text-white text-center z-10"
