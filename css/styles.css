@@ -2,154 +2,35 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hero Button Styling */
 .hero-button {
   overflow: hidden;
   position: relative;
 }
 
-.hero-button h1 {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-  font-size: 3.5rem;
-  line-height: 1.2;
-}
-
-/* Expand Transition for Clicked Button */
-.hero-button.expand-full {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 100;
-  transform: scale(1.5);
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 1;
-}
-
-/* Shrink and Fade Out for Other Buttons */
-.hero-button.shrink-fade-out {
-  transform: scale(0.5);
-  opacity: 0;
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  z-index: 1;
-}
-
-/* Hero Button Video Styling */
 .hero-button video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
 }
 
-/* Hover Effect for Hero Buttons */
-.hero-button:hover video {
-  transform: scale(1.1);
-  transition: transform 0.5s ease-in-out;
+.hero-button.expand-full {
+  transform: scale(1.5);
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-.hero-button:hover h1 {
-  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9);
-  color: #ffffff;
-  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-}
-
-/* Gradient Overlay for Hero Buttons */
-.hero-button div {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%);
-}
-
-/* Hero Divider */
 .hero-divider {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
   height: 100%;
   width: 2px;
   background: linear-gradient(to bottom, #ffffff, transparent);
-  animation: fade-in 1.5s ease;
 }
 
-/* Animations for Hero Buttons */
-@keyframes expand {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(2);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Smooth Scroll Snap */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-.snap-y {
-  scroll-snap-type: y mandatory;
-}
-
-.snap-start {
-  scroll-snap-align: start;
-}
-
-/* Main Content Fade-In Animation */
-#main-content {
-  animation: fadeIn 1s ease-in-out forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Sidebar Transition */
-#sidebar {
-  transform: translateX(-100%);
-  transition: transform 0.5s ease-in-out;
-}
-
-/* Sidebar Show State */
-#sidebar.show {
-  transform: translateX(0);
-}
-
-/* Sidebar Hidden State */
-#sidebar.hidden {
-  display: none;
-}
-
-/* Sidebar Button Hover Effect */
-#sidebar button {
-  transition: background-color 0.3s ease;
-}
-
-#sidebar button:hover {
-  background-color: #4F46E5; /* Deep purple */
-  color: white;
-}
-
-/* Hamburger Button Display */
-#hamburgerBtn.show {
-  display: block;
-}
 
   
   
