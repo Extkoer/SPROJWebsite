@@ -2,25 +2,19 @@
  * TRANSITION FROM HERO TO SLIDE-BASED SECTION
  **********************************************/
 function transitionToSection(topic) {
-  const heroSection = document.getElementById("hero");
-  const mainContent = document.getElementById("main-content");
-  const sidebar = document.getElementById("sidebar");
+  const heroSection = document.getElementById('hero');
+  const mainContent = document.getElementById('main-content');
+  const sidebarWrapper = document.getElementById('sidebar-wrapper');
   const clickedHero = document.getElementById(`hero-${topic}`);
-  const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
 
   // Start the expansion animation for the clicked hero area
-  clickedHero.classList.add("expand-full");
+  clickedHero.classList.add('expand-full');
 
-  // Shrink and fade out the other hero areas
-  otherHero.forEach((hero) => {
-    hero.classList.add("shrink-fade-out");
-  });
-
-  // After the animation, show the main content
+  // Hide the hero section after the animation completes
   setTimeout(() => {
-    heroSection.style.display = "none";
-    mainContent.style.display = "block"; // Show main content
-    sidebar.classList.remove("hidden"); // Show sidebar
+    heroSection.style.display = 'none'; // Hide hero page
+    mainContent.style.display = 'block'; // Show main content
+    sidebarWrapper.classList.remove('hidden'); // Show sidebar
     updateSidebar(topic);
     showSlides(topic);
   }, 1000); // Matches the animation duration
@@ -134,25 +128,21 @@ function goToSlide(topic, slideNumber) {
 }
 
 /**********************************************
- * RETURN TO HERO SECTION
+ * GO HOME (RETURN TO HERO)
  **********************************************/
 function goHome() {
-  const heroSection = document.getElementById("hero");
-  const mainContent = document.getElementById("main-content");
-  const sidebar = document.getElementById("sidebar");
+  const heroSection = document.getElementById('hero');
+  const mainContent = document.getElementById('main-content');
+  const sidebarWrapper = document.getElementById('sidebar-wrapper');
 
-  // Show the hero section
-  heroSection.style.display = "grid";
-  mainContent.style.display = "none";
+  heroSection.style.display = 'grid'; // Show hero page
+  mainContent.style.display = 'none'; // Hide main content
+  sidebarWrapper.classList.add('hidden'); // Hide sidebar
 
-  // Reset hero button states
-  document.querySelectorAll(".hero-button").forEach((button) => {
-    button.classList.remove("expand-full", "shrink-fade-out");
+  // Reset hero button expansion
+  document.querySelectorAll('.hero-button').forEach(button => {
+    button.classList.remove('expand-full');
   });
-
-  // Hide the sidebar
-  sidebar.classList.add("hidden");
-  sidebar.classList.remove("show");
 }
 
 
