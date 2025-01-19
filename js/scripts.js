@@ -11,9 +11,13 @@ function transitionToSection(topic) {
   // Animate the clicked hero to expand and cover the screen
   gsap.to(clickedHero, {
     duration: 1,
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
     x: 0,
     y: 0,
-    scale: 1.5,
+    scale: 1, // Reset scale if any was applied
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
