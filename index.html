@@ -33,16 +33,18 @@
       class="relative group cursor-pointer hero-button"
       onclick="transitionToSection('co2')"
     >
+      <!-- Background Video -->
+      <video 
+        class="absolute inset-0 w-full h-full object-cover z-0" 
+        autoplay muted loop playsinline>
+        <source src="assets/co2emissions.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       <div 
-        class="h-full w-full bg-cover bg-center transition-transform duration-700" 
-        style="background-image: url('assets/co2-image.jpg');"
+        class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent 
+                  flex items-center justify-center text-white text-center z-10"
       >
-        <div 
-          class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent 
-                     flex items-center justify-center text-white text-center"
-        >
-          <h1 class="text-5xl font-extrabold tracking-wider">CO2 Emissions</h1>
-        </div>
+        <h1 class="text-5xl font-extrabold tracking-wider">CO2 Emissions</h1>
       </div>
     </div>
 
@@ -52,16 +54,18 @@
       class="relative group cursor-pointer hero-button"
       onclick="transitionToSection('stock')"
     >
+      <!-- Background Video -->
+      <video 
+        class="absolute inset-0 w-full h-full object-cover z-0" 
+        autoplay muted loop playsinline>
+        <source src="assets/stockmarket.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       <div 
-        class="h-full w-full bg-cover bg-center transition-transform duration-700" 
-        style="background-image: url('assets/stock-image.jpg');"
+        class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
+                  flex items-center justify-center text-white text-center z-10"
       >
-        <div 
-          class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
-                     flex items-center justify-center text-white text-center"
-        >
-          <h1 class="text-5xl font-extrabold tracking-wider">Stock Market</h1>
-        </div>
+        <h1 class="text-5xl font-extrabold tracking-wider">Stock Market</h1>
       </div>
     </div>
   </header>
