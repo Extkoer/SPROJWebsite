@@ -21,12 +21,11 @@ function transitionToSection(topic) {
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
-      // Hide the hero section after animation completes
       heroSection.style.display = "none";
-      mainContent.style.display = "block"; // Show main content
-      sidebarWrapper.classList.remove("hidden"); // Show sidebar
-      updateSidebar(topic); // Update sidebar content dynamically
-      showSlides(topic); // Display relevant slides
+      mainContent.style.display = "block";
+      sidebarWrapper.classList.remove("hidden");
+      updateSidebar(topic);
+      showSlides(topic);
     },
   });
 
@@ -170,24 +169,47 @@ function goHome() {
   const heroSection = document.getElementById("hero");
   const mainContent = document.getElementById("main-content");
   const sidebarWrapper = document.getElementById("sidebar-wrapper");
+  const sidebar = document.getElementById("sidebar");
+  const heroButtons = document.querySelectorAll(".hero-button");
 
-  // Reset animations and show hero
+  // Hide main content and sidebar with animation
   gsap.to(mainContent, {
     duration: 0.5,
     opacity: 0,
     onComplete: () => {
       mainContent.style.display = "none"; // Hide main content
       heroSection.style.display = "grid"; // Show hero page
-      sidebarWrapper.classList.add("hidden"); // Hide sidebar
     },
   });
 
-  // Reset hero button states
-  document.querySelectorAll(".hero-button").forEach((button) => {
+  // Hide sidebar with animation
+  gsap.to(sidebar, {
+    x: "-100%",
+    duration: 0.5,
+    ease: "power2.inOut",
+    onComplete: () => {
+      sidebarWrapper.classList.add("hidden"); // Hide sidebar wrapper
+    },
+  });
+
+  // Reset hero buttons
+  heroButtons.forEach((button) => {
+    // Reset opacity and scale
+    gsap.to(button, {
+      duration: 0.5,
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+      zIndex: 0,
+      ease: "power2.out",
+    });
+
+    // Remove expanded state
     button.classList.remove("expand-full");
-    gsap.set(button, { opacity: 1, transform: "scale(1)" });
   });
 }
+
 
 
 
