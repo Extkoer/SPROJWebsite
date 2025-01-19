@@ -16,10 +16,15 @@ html {
 }
 
 .hero-button.expand-full {
-  transform: scale(1.5);
+  position: fixed; /* Fix the element to the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Expand to the full viewport width */
+  height: 100vh; /* Expand to the full viewport height */
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.8);
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8); /* Add a dark overlay effect */
+  transition: all 1s ease-in-out; /* Smooth transition for both size and position */
+  transform: none; /* Remove scaling since we're making it fully fit */
 }
 
 .hero-divider {
