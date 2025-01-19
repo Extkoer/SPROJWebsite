@@ -101,16 +101,6 @@ html {
   color: white;
 }
 
-/* Sidebar visible state */
-#sidebar.show {
-  transform: translateX(0);
-}
-
-/* Hidden sidebar */
-#sidebar.hidden {
-  display: none;
-}
-
 
 #hamburgerBtn.show {
   display: block;
