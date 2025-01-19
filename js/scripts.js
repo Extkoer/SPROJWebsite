@@ -2,22 +2,38 @@
  * TRANSITION FROM HERO TO SLIDE-BASED SECTION
  **********************************************/
 function transitionToSection(topic) {
-  const heroSection = document.getElementById('hero');
-  const mainContent = document.getElementById('main-content');
-  const sidebarWrapper = document.getElementById('sidebar-wrapper');
+  const heroSection = document.getElementById("hero");
+  const mainContent = document.getElementById("main-content");
+  const sidebarWrapper = document.getElementById("sidebar-wrapper");
   const clickedHero = document.getElementById(`hero-${topic}`);
+  const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
 
-  // Start the expansion animation for the clicked hero area
-  clickedHero.classList.add('expand-full');
+  // Animate the clicked hero to expand and cover the screen
+  gsap.to(clickedHero, {
+    duration: 1,
+    x: 0,
+    y: 0,
+    scale: 1.5,
+    zIndex: 100,
+    ease: "power2.inOut",
+    onComplete: () => {
+      // Hide the hero section after animation completes
+      heroSection.style.display = "none";
+      mainContent.style.display = "block"; // Show main content
+      sidebarWrapper.classList.remove("hidden"); // Show sidebar
+      updateSidebar(topic); // Update sidebar content dynamically
+      showSlides(topic); // Display relevant slides
+    },
+  });
 
-  // Hide the hero section after the animation completes
-  setTimeout(() => {
-    heroSection.style.display = 'none'; // Hide hero page
-    mainContent.style.display = 'block'; // Show main content
-    sidebarWrapper.classList.remove('hidden'); // Show sidebar
-    updateSidebar(topic);
-    showSlides(topic);
-  }, 1000); // Matches the animation duration
+  // Animate the other hero buttons to fade out
+  otherHero.forEach((hero) => {
+    gsap.to(hero, {
+      duration: 0.5,
+      opacity: 0,
+      ease: "power2.out",
+    });
+  });
 }
 
 /**********************************************
@@ -81,11 +97,23 @@ function updateSidebar(topic) {
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   if (sidebar.classList.contains("hidden")) {
-    sidebar.classList.remove("hidden");
-    sidebar.classList.add("show");
+    gsap.to(sidebar, {
+      x: 0,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onStart: () => {
+        sidebar.classList.remove("hidden");
+      },
+    });
   } else {
-    sidebar.classList.add("hidden");
-    sidebar.classList.remove("show");
+    gsap.to(sidebar, {
+      x: "-100%",
+      duration: 0.5,
+      ease: "power2.inOut",
+      onComplete: () => {
+        sidebar.classList.add("hidden");
+      },
+    });
   }
 }
 
@@ -123,7 +151,11 @@ function goToSlide(topic, slideNumber) {
   if (slideNumber <= slides.length) {
     // Scroll to the target slide
     const targetSlide = slides[slideNumber - 1];
-    targetSlide.scrollIntoView({ behavior: "smooth" });
+    gsap.to(container, {
+      duration: 0.5,
+      scrollTo: targetSlide,
+      ease: "power2.out",
+    });
   }
 }
 
@@ -131,19 +163,28 @@ function goToSlide(topic, slideNumber) {
  * GO HOME (RETURN TO HERO)
  **********************************************/
 function goHome() {
-  const heroSection = document.getElementById('hero');
-  const mainContent = document.getElementById('main-content');
-  const sidebarWrapper = document.getElementById('sidebar-wrapper');
+  const heroSection = document.getElementById("hero");
+  const mainContent = document.getElementById("main-content");
+  const sidebarWrapper = document.getElementById("sidebar-wrapper");
 
-  heroSection.style.display = 'grid'; // Show hero page
-  mainContent.style.display = 'none'; // Hide main content
-  sidebarWrapper.classList.add('hidden'); // Hide sidebar
+  // Reset animations and show hero
+  gsap.to(mainContent, {
+    duration: 0.5,
+    opacity: 0,
+    onComplete: () => {
+      mainContent.style.display = "none"; // Hide main content
+      heroSection.style.display = "grid"; // Show hero page
+      sidebarWrapper.classList.add("hidden"); // Hide sidebar
+    },
+  });
 
-  // Reset hero button expansion
-  document.querySelectorAll('.hero-button').forEach(button => {
-    button.classList.remove('expand-full');
+  // Reset hero button states
+  document.querySelectorAll(".hero-button").forEach((button) => {
+    button.classList.remove("expand-full");
+    gsap.set(button, { opacity: 1, transform: "scale(1)" });
   });
 }
+
 
 
 
