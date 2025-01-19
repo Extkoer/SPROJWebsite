@@ -1,54 +1,37 @@
+/**********************************************
+ * TRANSITION FROM HERO TO SLIDE-BASED SECTION
+ **********************************************/
 function transitionToSection(topic) {
   const heroSection = document.getElementById("hero");
   const mainContent = document.getElementById("main-content");
-  const sidebarWrapper = document.getElementById("sidebar-wrapper");
   const clickedHero = document.getElementById(`hero-${topic}`);
   const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
 
-  // Get the clicked button's current position and size
+  // Get the clicked button's bounding box
   const rect = clickedHero.getBoundingClientRect();
 
-  // Calculate uniform scale factor
+  // Calculate scale and translation to center and expand the button
   const scale = Math.max(window.innerWidth / rect.width, window.innerHeight / rect.height);
+  const translateX = window.innerWidth / 2 - (rect.left + rect.width / 2);
+  const translateY = window.innerHeight / 2 - (rect.top + rect.height / 2);
 
-  // Calculate translation to center the button
-  const centerX = window.innerWidth / 2 - (rect.left + rect.width / 2);
-  const centerY = window.innerHeight / 2 - (rect.top + rect.height / 2);
-
-  // Animate the clicked hero to expand and immerse
+  // Animate the clicked button to expand and fill the viewport
   gsap.to(clickedHero, {
     duration: 1,
-    x: centerX,
-    y: centerY,
+    x: translateX,
+    y: translateY,
     scale: scale,
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
-      // After animation, hide the hero and show the main content
       heroSection.style.display = "none";
-      mainContent.style.display = "block";
-      sidebarWrapper.classList.remove("hidden");
-
-      gsap.to("#sidebar", {
-        x: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.inOut",
-      });
-
-      updateSidebar(topic);
+      mainContent.style.display = "block"; // Show main content
+      document.getElementById("hamburgerBtn").classList.remove("hidden"); // Show sidebar toggle
       showSlides(topic);
     },
   });
 
-  gsap.to(heroSection, {
-    duration: 1,
-    opacity: 0.5,
-    filter: "blur(10px)",
-    ease: "power2.inOut",
-  });
-
-  // Fade out other buttons
+  // Animate other buttons to fade out
   otherHero.forEach((hero) => {
     gsap.to(hero, {
       duration: 0.5,
@@ -63,26 +46,20 @@ function transitionToSection(topic) {
  **********************************************/
 function updateSidebar(topic) {
   const sidebarSections = document.getElementById("sidebar-sections");
-  sidebarSections.innerHTML = ""; // Clear current content
+  sidebarSections.innerHTML = "";
 
-  // Populate the sidebar with topic-specific sections
+  // Populate the sidebar with relevant sections
   if (topic === "co2") {
     sidebarSections.innerHTML = `
       <h2 class="text-4xl font-bold mb-6">CO2 Emissions</h2>
       <ul class="space-y-4 text-2xl">
         <li>
-          <button 
-            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
-            onclick="goToSlide('co2', 1)"
-          >
+          <button class="w-full text-left px-4 py-2 hover:bg-gray-700" onclick="goToSlide('co2', 1)">
             Global Trends
           </button>
         </li>
         <li>
-          <button 
-            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
-            onclick="goToSlide('co2', 2)"
-          >
+          <button class="w-full text-left px-4 py-2 hover:bg-gray-700" onclick="goToSlide('co2', 2)">
             Major Sources
           </button>
         </li>
@@ -93,18 +70,12 @@ function updateSidebar(topic) {
       <h2 class="text-4xl font-bold mb-6">Stock Market</h2>
       <ul class="space-y-4 text-2xl">
         <li>
-          <button 
-            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
-            onclick="goToSlide('stock', 1)"
-          >
+          <button class="w-full text-left px-4 py-2 hover:bg-gray-700" onclick="goToSlide('stock', 1)">
             Market Trends
           </button>
         </li>
         <li>
-          <button 
-            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
-            onclick="goToSlide('stock', 2)"
-          >
+          <button class="w-full text-left px-4 py-2 hover:bg-gray-700" onclick="goToSlide('stock', 2)">
             Carbon Policies
           </button>
         </li>
@@ -138,11 +109,11 @@ function showSlides(topic) {
   const co2Slides = document.getElementById("co2-slides");
   const stockSlides = document.getElementById("stock-slides");
 
-  // Hide both slide sections
+  // Hide all slides
   co2Slides.classList.add("hidden");
   stockSlides.classList.add("hidden");
 
-  // Show the relevant section
+  // Show the relevant slides
   if (topic === "co2") {
     co2Slides.classList.remove("hidden");
   } else if (topic === "stock") {
@@ -154,16 +125,11 @@ function showSlides(topic) {
  * GO TO SPECIFIC SLIDE
  **********************************************/
 function goToSlide(topic, slideNumber) {
-  showSlides(topic); // Show the relevant topic's slides
+  showSlides(topic);
 
-  const container =
-    topic === "co2"
-      ? document.getElementById("co2-slides")
-      : document.getElementById("stock-slides");
-
+  const container = topic === "co2" ? document.getElementById("co2-slides") : document.getElementById("stock-slides");
   const slides = container.children;
   if (slideNumber <= slides.length) {
-    // Scroll to the target slide
     const targetSlide = slides[slideNumber - 1];
     gsap.to(container, {
       duration: 0.5,
@@ -183,16 +149,27 @@ function goHome() {
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const heroButtons = document.querySelectorAll(".hero-button");
 
-  // Reset Hero Section
+  // Reset animations
   heroButtons.forEach((button) => {
     gsap.set(button, { scale: 1, x: 0, y: 0, zIndex: 0 });
   });
 
   // Reset visibility
-  gsap.to(mainContent, { opacity: 0, duration: 0.5, onComplete: () => (mainContent.style.display = "none") });
-  gsap.to(sidebar, { scale: 0, duration: 0.5, onComplete: () => sidebar.classList.add("hidden") });
+  gsap.to(mainContent, {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+      mainContent.style.display = "none";
+      heroSection.style.display = "grid";
+    },
+  });
 
-  heroSection.style.display = "grid";
+  // Hide sidebar and sidebar toggle button
+  gsap.to(sidebar, {
+    scale: 0,
+    duration: 0.5,
+    onComplete: () => sidebar.classList.add("hidden"),
+  });
   hamburgerBtn.classList.add("hidden");
 }
 

@@ -16,14 +16,13 @@
 </head>
 <body class="font-sans bg-gray-50 text-gray-800 overflow-hidden relative">
 
-  <!-- Sidebar (Full-screen Overlay) -->
+  <!-- Sidebar (Full-page Overlay) -->
   <div
     id="sidebar"
     class="fixed inset-0 bg-gray-900 text-white transform scale-0 transition-transform duration-500 z-50 hidden"
   >
     <div class="flex flex-col items-center justify-center h-full space-y-12">
       <button
-        id="homeButton"
         class="text-6xl font-extrabold hover:opacity-80 focus:outline-none"
         onclick="goHome()"
       >
@@ -63,18 +62,10 @@
       class="relative group cursor-pointer hero-button"
       onclick="transitionToSection('co2')"
     >
-      <!-- Background Video -->
-      <video
-        class="absolute inset-0 w-full h-full object-cover z-0"
-        autoplay muted loop playsinline disablePictureInPicture
-      >
+      <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop>
         <source src="assets/co2emissions.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
-                flex items-center justify-center text-white text-center z-10"
-      >
+      <div class="absolute inset-0 flex items-center justify-center text-white text-center z-10">
         <h1 class="text-5xl font-extrabold tracking-wider">CO2 Emissions</h1>
       </div>
     </div>
@@ -85,46 +76,14 @@
       class="relative group cursor-pointer hero-button"
       onclick="transitionToSection('stock')"
     >
-      <!-- Background Video -->
-      <video
-        class="absolute inset-0 w-full h-full object-cover z-0"
-        autoplay muted loop playsinline disablePictureInPicture
-      >
+      <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop>
         <source src="assets/stockmarket.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
-                flex items-center justify-center text-white text-center z-10"
-      >
+      <div class="absolute inset-0 flex items-center justify-center text-white text-center z-10">
         <h1 class="text-5xl font-extrabold tracking-wider">Stock Market</h1>
       </div>
     </div>
   </header>
-
-  <!-- Sidebar (slides out from the left) -->
-  <div id="sidebar-wrapper" class="hidden">
-    <nav
-      id="sidebar"
-      class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white transform -translate-x-full transition-transform duration-500 z-40"
-    >
-      <!-- Sidebar Header -->
-      <div class="p-8 space-y-6">
-        <button
-          class="text-2xl font-bold w-full text-left focus:outline-none hover:opacity-80"
-          onclick="goHome()"
-        >
-          Home
-        </button>
-        <div id="sidebar-sections" class="space-y-4"></div>
-      </div>
-
-      <!-- Sidebar Footer -->
-      <div class="absolute bottom-4 left-4">
-        <p class="text-sm text-gray-400">© 2025 SPROJ</p>
-      </div>
-    </nav>
-  </div>
 
   <!-- Main Content (Slides) -->
   <main id="main-content" class="hidden">

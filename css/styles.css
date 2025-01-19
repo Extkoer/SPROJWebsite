@@ -75,7 +75,7 @@ h1, h2, p {
   z-index: 0;
 }
 
-/* Hover Effects */
+/* Hover Effects for Video */
 .hero-button:hover video {
   transform: scale(1.1);
   transition: transform 0.5s ease-in-out;
@@ -124,6 +124,7 @@ h1, h2, p {
   scroll-snap-align: start;
 }
 
+/* Hide Scrollbar */
 ::-webkit-scrollbar {
   width: 0;
   background: transparent;
@@ -136,13 +137,15 @@ h1, h2, p {
 /* Sidebar Container */
 #sidebar {
   transform-origin: center;
+  transform: scale(0); /* Hidden by default */
   background: radial-gradient(circle, rgba(31, 41, 55, 1) 70%, rgba(17, 24, 39, 1));
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
 }
 
 /* Sidebar Show State */
 #sidebar.show {
-  transform: translateX(0);
+  transform: scale(1);
   opacity: 1;
 }
 
@@ -181,11 +184,11 @@ h1, h2, p {
 
 /* Hamburger Button */
 #hamburgerBtn {
-  display: none; /* Hide on Hero Page */
+  display: none; /* Hidden on Hero Page */
 }
 
 #hamburgerBtn.show {
-  display: flex; /* Show on Subpages */
+  display: flex; /* Visible on Subpages */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -208,16 +211,18 @@ h1, h2, p {
  * RESPONSIVE STYLING
  **********************************************/
 
+/* Medium Screens */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
   }
 
   #sidebar {
-    width: 80%; /* Smaller sidebar for mobile */
+    width: 80%; /* Smaller Sidebar for Medium Screens */
   }
 }
 
+/* Small Screens */
 @media (max-width: 480px) {
   h1 {
     font-size: 1.5rem;
@@ -229,7 +234,7 @@ h1, h2, p {
   }
 
   #sidebar {
-    width: 100%;
+    width: 100%; /* Full-width Sidebar on Small Screens */
   }
 }
 
