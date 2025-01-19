@@ -17,7 +17,7 @@ function transitionToSection(topic) {
 
   // Animate the clicked hero to expand and immerse
   gsap.to(clickedHero, {
-    duration: 1,
+    duration: 0.5,
     x: centerX,
     y: centerY,
     scale: scale,
