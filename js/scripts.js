@@ -6,6 +6,7 @@ function transitionToSection(topic) {
   const mainContent = document.getElementById("main-content");
   const clickedHero = document.getElementById(`hero-${topic}`);
   const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
 
   // Get the clicked button's bounding box
   const rect = clickedHero.getBoundingClientRect();
@@ -15,7 +16,6 @@ function transitionToSection(topic) {
   const translateX = window.innerWidth / 2 - (rect.left + rect.width / 2);
   const translateY = window.innerHeight / 2 - (rect.top + rect.height / 2);
 
-  // Animate the clicked button to expand and fill the viewport
   gsap.to(clickedHero, {
     duration: 1,
     x: translateX,
@@ -26,7 +26,7 @@ function transitionToSection(topic) {
     onComplete: () => {
       heroSection.style.display = "none";
       mainContent.style.display = "block"; // Show main content
-      document.getElementById("hamburgerBtn").classList.remove("hidden"); // Show sidebar toggle
+      hamburgerBtn.classList.remove("hidden"); // Show sidebar toggle button
       showSlides(topic);
     },
   });
@@ -89,10 +89,18 @@ function updateSidebar(topic) {
  **********************************************/
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  if (sidebar.classList.contains("hidden")) {
+  const isHidden = sidebar.classList.contains("hidden");
+
+  if (isHidden) {
+    // Show sidebar
     sidebar.classList.remove("hidden");
-    gsap.to(sidebar, { scale: 1, duration: 0.5, ease: "power2.inOut" });
+    gsap.to(sidebar, {
+      scale: 1,
+      duration: 0.5,
+      ease: "power2.inOut",
+    });
   } else {
+    // Hide sidebar
     gsap.to(sidebar, {
       scale: 0,
       duration: 0.5,
@@ -129,6 +137,7 @@ function goToSlide(topic, slideNumber) {
 
   const container = topic === "co2" ? document.getElementById("co2-slides") : document.getElementById("stock-slides");
   const slides = container.children;
+
   if (slideNumber <= slides.length) {
     const targetSlide = slides[slideNumber - 1];
     gsap.to(container, {
@@ -149,12 +158,12 @@ function goHome() {
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const heroButtons = document.querySelectorAll(".hero-button");
 
-  // Reset animations
+  // Reset hero buttons
   heroButtons.forEach((button) => {
     gsap.set(button, { scale: 1, x: 0, y: 0, zIndex: 0 });
   });
 
-  // Reset visibility
+  // Reset visibility and animations
   gsap.to(mainContent, {
     opacity: 0,
     duration: 0.5,
@@ -164,12 +173,14 @@ function goHome() {
     },
   });
 
-  // Hide sidebar and sidebar toggle button
+  // Hide sidebar
   gsap.to(sidebar, {
     scale: 0,
     duration: 0.5,
     onComplete: () => sidebar.classList.add("hidden"),
   });
+
+  // Hide hamburger button
   hamburgerBtn.classList.add("hidden");
 }
 
