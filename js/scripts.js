@@ -8,20 +8,19 @@ function transitionToSection(topic) {
   // Get the clicked button's current position and size
   const rect = clickedHero.getBoundingClientRect();
 
-  // Calculate scaling and translation factors
-  const scaleX = window.innerWidth / rect.width; // Scale to viewport width
-  const scaleY = window.innerHeight / rect.height; // Scale to viewport height
-  const translateX = -rect.left; // Move to align left edge to viewport
-  const translateY = -rect.top; // Move to align top edge to viewport
+  // Calculate uniform scale factor
+  const scale = Math.max(window.innerWidth / rect.width, window.innerHeight / rect.height);
 
-  // Animate the clicked button to expand and cover the screen
+  // Calculate translation to center the button
+  const centerX = window.innerWidth / 2 - (rect.left + rect.width / 2);
+  const centerY = window.innerHeight / 2 - (rect.top + rect.height / 2);
+
+  // Animate the clicked hero to expand and immerse
   gsap.to(clickedHero, {
     duration: 1,
-    x: translateX,
-    y: translateY,
-    scaleX: scaleX,
-    scaleY: scaleY,
-    transformOrigin: "top left", // Transform relative to the top-left corner
+    x: centerX,
+    y: centerY,
+    scale: scale,
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
@@ -34,6 +33,13 @@ function transitionToSection(topic) {
     },
   });
 
+  gsap.to(heroSection, {
+    duration: 0.5,
+    opacity: 0.5,
+    filter: "blur(10px)",
+    ease: "power2.inOut",
+  });
+
   // Fade out other buttons
   otherHero.forEach((hero) => {
     gsap.to(hero, {
@@ -43,7 +49,6 @@ function transitionToSection(topic) {
     });
   });
 }
-
 
 /**********************************************
  * UPDATE SIDEBAR CONTENT BASED ON TOPIC
