@@ -6,6 +6,18 @@ html {
 /* Hero transition expansions */
 .hero-button {
   overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-button.expand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  transition: all 0.7s ease-in-out;
 }
 .hero-button.zoom .h-full {
   transform: scale(2);

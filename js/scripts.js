@@ -6,22 +6,37 @@ function transitionToSection(topic) {
   const mainContent = document.getElementById('main-content');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
 
-  // Zoom effect on clicked hero area
+  // Get the clicked hero section
   const clickedHero = document.getElementById(`hero-${topic}`);
-  clickedHero.classList.add('zoom');
+  
+  // Apply the expand effect
+  clickedHero.classList.add('expand');
 
-  // Timeout to let the zoom animation play, then fade out
   setTimeout(() => {
-    // Hide Hero, show main content
-    heroSection.style.display = 'none';
-    mainContent.style.display = 'block';
+    heroSection.style.display = 'none'; // Hide Hero
+    mainContent.style.display = 'block'; // Show Main Content
 
-    // Show relevant slides
-    showSlides(topic);
+    showSlides(topic); // Show the topic's slides
+    updateSidebar(topic); // Update sidebar dynamically
+    hamburgerBtn.classList.add('show'); // Show hamburger menu
+  }, 700); // Wait for the expand animation
+}
 
-    // Show hamburger button
-    hamburgerBtn.classList.add('show');
-  }, 700);
+function updateSidebar(topic) {
+  const sidebarSections = document.getElementById('sidebar-sections');
+  sidebarSections.innerHTML = ''; // Clear existing sections
+
+  if (topic === 'co2') {
+    sidebarSections.innerHTML = `
+      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('co2', 1)">Global Trends</button>
+      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('co2', 2)">Major Sources</button>
+    `;
+  } else if (topic === 'stock') {
+    sidebarSections.innerHTML = `
+      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('stock', 1)">Market Trends</button>
+      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('stock', 2)">Carbon Policies</button>
+    `;
+  }
 }
 
 /**********************************************
@@ -70,23 +85,20 @@ function showSection(section) {
  * GOTO SPECIFIC SLIDE
  **********************************************/
 function goToSlide(topic, slideNumber) {
-  showSlides(topic);
-  // Each slide is simply the nth child; we can scroll to it
-  // Using scroll-snap, we can scroll to it with DOM APIs
+  showSlides(topic); // Show the relevant topic's slides
+  
   const container = (topic === 'co2')
     ? document.getElementById('co2-slides')
     : document.getElementById('stock-slides');
 
   const slides = container.children;
   if (slideNumber <= slides.length) {
-    // The slide is (slideNumber - 1) index
+    // Scroll to the target slide
     const targetSlide = slides[slideNumber - 1];
     targetSlide.scrollIntoView({ behavior: 'smooth' });
   }
-  
-  // Close sidebar automatically if desired
-  toggleSidebar();
 }
+
 
 /**********************************************
  * GO HOME (RETURN TO HERO)
@@ -96,9 +108,9 @@ function goHome() {
   document.getElementById('main-content').style.display = 'none';
   document.getElementById('hamburgerBtn').classList.remove('show');
 
-  // Reset hero zoom
+  // Reset hero button expansion
   document.querySelectorAll('.hero-button').forEach(button => {
-    button.classList.remove('zoom');
+    button.classList.remove('expand');
   });
 
   // Hide Sidebar

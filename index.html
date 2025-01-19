@@ -71,55 +71,27 @@
     id="sidebar"
     class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white hidden transform -translate-x-full transition-transform duration-500 z-40"
   >
+    <!-- Sidebar Header -->
     <div class="p-8 space-y-6">
+      <!-- Home Button -->
       <button 
         class="text-2xl font-bold w-full text-left focus:outline-none hover:opacity-80" 
         onclick="goHome()"
-      >Home</button>
-      <!-- Sub-sections for CO2 -->
-      <div>
-        <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
-        <ul class="space-y-1">
-          <li>
-            <button 
-              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-              onclick="goToSlide('co2', 1)"
-            >
-              Global Trends
-            </button>
-          </li>
-          <li>
-            <button 
-              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-              onclick="goToSlide('co2', 2)"
-            >
-              Major Sources
-            </button>
-          </li>
-        </ul>
+      >
+        Home
+      </button>
+
+      <!-- Dynamic Sub-Sections -->
+      <div id="sidebar-sections" class="space-y-4">
+        <!-- Sub-sections dynamically inserted by JavaScript -->
       </div>
-      <!-- Sub-sections for Stock Market -->
-      <div>
-        <h2 class="text-xl font-bold mb-2">Stock Market</h2>
-        <ul class="space-y-1">
-          <li>
-            <button 
-              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-              onclick="goToSlide('stock', 1)"
-            >
-              Market Trends
-            </button>
-          </li>
-          <li>
-            <button 
-              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-              onclick="goToSlide('stock', 2)"
-            >
-              Carbon Policies
-            </button>
-          </li>
-        </ul>
-      </div>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="absolute bottom-4 left-4">
+      <p class="text-sm text-gray-400">
+        © 2025 SPROJ
+      </p>
     </div>
   </nav>
 
