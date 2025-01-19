@@ -1,81 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SPROJ: CO2 Emissions & Stock Market</title>
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="font-sans bg-gray-50 text-gray-800">
+<body class="font-sans bg-gray-50 text-gray-800 relative">
+
+  <!-- Hamburger Icon (top-left corner) -->
+  <button 
+    id="hamburgerBtn"
+    class="absolute top-6 left-6 z-50 p-2 bg-white shadow-md rounded focus:outline-none hidden"
+    onclick="toggleSidebar()"
+  >
+    <!-- Simple "hamburger" lines -->
+    <div class="w-6 h-0.5 bg-gray-700 mb-1"></div>
+    <div class="w-6 h-0.5 bg-gray-700 mb-1"></div>
+    <div class="w-6 h-0.5 bg-gray-700"></div>
+  </button>
 
   <!-- Hero Section -->
-  <header id="hero" class="h-screen grid grid-cols-1 md:grid-cols-2 relative">
-    <div class="relative group cursor-pointer" onclick="transitionToSection('co2')">
-      <div class="h-full bg-cover bg-center" style="background-image: url('assets/co2-image.jpg');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center">
+  <header id="hero" class="h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
+    <!-- CO2 Emissions Side -->
+    <div 
+      id="hero-co2" 
+      class="relative group cursor-pointer hero-button"
+      onclick="transitionToSection('co2')"
+    >
+      <div 
+        class="h-full w-full bg-cover bg-center transition-transform duration-700" 
+        style="background-image: url('assets/co2-image.jpg');"
+      >
+        <div 
+          class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent 
+                     flex items-center justify-center text-white text-center"
+        >
           <h1 class="text-5xl font-extrabold tracking-wider">CO2 Emissions</h1>
         </div>
       </div>
     </div>
-    <div class="relative group cursor-pointer" onclick="transitionToSection('stock')">
-      <div class="h-full bg-cover bg-center" style="background-image: url('assets/stock-image.jpg');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center">
+
+    <!-- Stock Market Side -->
+    <div 
+      id="hero-stock" 
+      class="relative group cursor-pointer hero-button"
+      onclick="transitionToSection('stock')"
+    >
+      <div 
+        class="h-full w-full bg-cover bg-center transition-transform duration-700" 
+        style="background-image: url('assets/stock-image.jpg');"
+      >
+        <div 
+          class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent
+                     flex items-center justify-center text-white text-center"
+        >
           <h1 class="text-5xl font-extrabold tracking-wider">Stock Market</h1>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Floating Sidebar -->
-  <nav id="sidebar" class="fixed top-1/3 right-4 hidden z-50">
-    <div class="flex flex-col items-center space-y-4">
-      <button class="sidebar-button bg-gray-200 text-gray-800 p-4 rounded-full shadow-lg" onclick="goHome()">Home</button>
-      <button class="sidebar-button bg-gray-200 text-gray-800 p-4 rounded-full shadow-lg" onclick="showSection('co2')">CO2</button>
-      <button class="sidebar-button bg-gray-200 text-gray-800 p-4 rounded-full shadow-lg" onclick="showSection('stock')">Stock</button>
+  <!-- Sidebar (slides out from the left) -->
+  <nav
+    id="sidebar"
+    class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white hidden transform -translate-x-full transition-transform duration-500 z-40"
+  >
+    <div class="p-8 space-y-6">
+      <button 
+        class="text-2xl font-bold w-full text-left focus:outline-none hover:opacity-80" 
+        onclick="goHome()"
+      >Home</button>
+      <!-- Sub-sections for CO2 -->
+      <div>
+        <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
+        <ul class="space-y-1">
+          <li>
+            <button 
+              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+              onclick="goToSlide('co2', 1)"
+            >
+              Global Trends
+            </button>
+          </li>
+          <li>
+            <button 
+              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+              onclick="goToSlide('co2', 2)"
+            >
+              Major Sources
+            </button>
+          </li>
+        </ul>
+      </div>
+      <!-- Sub-sections for Stock Market -->
+      <div>
+        <h2 class="text-xl font-bold mb-2">Stock Market</h2>
+        <ul class="space-y-1">
+          <li>
+            <button 
+              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+              onclick="goToSlide('stock', 1)"
+            >
+              Market Trends
+            </button>
+          </li>
+          <li>
+            <button 
+              class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+              onclick="goToSlide('stock', 2)"
+            >
+              Carbon Policies
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
+  <!-- Main Content (Slides) -->
   <main id="main-content" class="hidden">
-    <section id="section-co2" class="min-h-screen p-8">
-      <div class="content-header bg-gray-800 text-white p-12 rounded-lg shadow-lg mb-12">
-        <h1 class="text-5xl font-extrabold mb-4">CO2 Emissions</h1>
-        <p class="text-lg">Explore trends and insights about global CO2 emissions and their impact.</p>
+    <!-- Slide Container for CO2 -->
+    <section 
+      id="co2-slides" 
+      class="snap-y snap-mandatory h-screen overflow-y-scroll"
+    >
+      <!-- Slide 1 -->
+      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8" 
+           style="background-image: url('assets/co2-slide1.jpg'); background-size: cover;">
+        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
+          <h1 class="text-5xl font-extrabold mb-4">Global CO2 Trends</h1>
+          <p class="text-lg">Explore the worldwide evolution of CO2 emissions over the years.</p>
+        </div>
       </div>
-      <article class="space-y-16">
-        <div class="relative">
-          <img src="assets/co2-trends.jpg" alt="CO2 Trends" class="w-full rounded-lg shadow-lg">
-          <h2 class="absolute bottom-8 left-8 text-4xl font-bold text-white bg-gray-800 bg-opacity-50 p-4 rounded-lg">Global CO2 Trends</h2>
+      <!-- Slide 2 -->
+      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8" 
+           style="background-image: url('assets/co2-slide2.jpg'); background-size: cover;">
+        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
+          <h1 class="text-5xl font-extrabold mb-4">Major Emission Sources</h1>
+          <p class="text-lg">Learn about the top contributors to CO2 emissions globally.</p>
         </div>
-        <div class="relative">
-          <img src="assets/emission-sources.jpg" alt="Emission Sources" class="w-full rounded-lg shadow-lg">
-          <h2 class="absolute bottom-8 left-8 text-4xl font-bold text-white bg-gray-800 bg-opacity-50 p-4 rounded-lg">Major Emission Sources</h2>
-        </div>
-      </article>
+      </div>
     </section>
 
-    <section id="section-stock" class="min-h-screen p-8">
-      <div class="content-header bg-gray-800 text-white p-12 rounded-lg shadow-lg mb-12">
-        <h1 class="text-5xl font-extrabold mb-4">Stock Market</h1>
-        <p class="text-lg">Discover the intersection of stock market trends and environmental policies.</p>
+    <!-- Slide Container for Stock -->
+    <section 
+      id="stock-slides" 
+      class="snap-y snap-mandatory h-screen overflow-y-scroll hidden"
+    >
+      <!-- Slide 1 -->
+      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8"
+           style="background-image: url('assets/stock-slide1.jpg'); background-size: cover;">
+        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
+          <h1 class="text-5xl font-extrabold mb-4">Market Trends</h1>
+          <p class="text-lg">Dive into how the stock market reacts to global events and policies.</p>
+        </div>
       </div>
-      <article class="space-y-16">
-        <div class="relative">
-          <img src="assets/market-trends.jpg" alt="Market Trends" class="w-full rounded-lg shadow-lg">
-          <h2 class="absolute bottom-8 left-8 text-4xl font-bold text-white bg-gray-800 bg-opacity-50 p-4 rounded-lg">Market Trends</h2>
+      <!-- Slide 2 -->
+      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8"
+           style="background-image: url('assets/stock-slide2.jpg'); background-size: cover;">
+        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
+          <h1 class="text-5xl font-extrabold mb-4">Carbon Policy Impact</h1>
+          <p class="text-lg">Analyze how carbon regulations shape investment strategies worldwide.</p>
         </div>
-        <div class="relative">
-          <img src="assets/carbon-policy.jpg" alt="Carbon Policy" class="w-full rounded-lg shadow-lg">
-          <h2 class="absolute bottom-8 left-8 text-4xl font-bold text-white bg-gray-800 bg-opacity-50 p-4 rounded-lg">Impact of Carbon Policies</h2>
-        </div>
-      </article>
+      </div>
     </section>
   </main>
 
+  <!-- Scripts -->
   <script src="js/scripts.js"></script>
 </body>
 </html>
+
 
 
 
