@@ -19,10 +19,7 @@ html {
   z-index: 100;
   transition: all 0.7s ease-in-out;
 }
-.hero-button.zoom .h-full {
-  transform: scale(2);
-  transition: transform 0.7s ease-in-out;
-}
+
 
 /* Hide the scrollbar for a cleaner snap effect (optional) */
 ::-webkit-scrollbar {
@@ -49,10 +46,22 @@ html {
   }
 }
 
-/* Sidebar hidden by default; controlled via transform in JS */
+/* Sidebar starts off-screen */
+#sidebar {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Sidebar visible state */
 #sidebar.show {
   transform: translateX(0);
 }
+
+/* Hidden sidebar */
+#sidebar.hidden {
+  display: none;
+}
+
 
 #hamburgerBtn.show {
   display: block;

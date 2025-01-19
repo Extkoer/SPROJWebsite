@@ -12,45 +12,85 @@ function transitionToSection(topic) {
   // Apply the expand effect
   clickedHero.classList.add('expand');
 
+  // Wait for the transition to complete
   setTimeout(() => {
-    heroSection.style.display = 'none'; // Hide Hero
-    mainContent.style.display = 'block'; // Show Main Content
+    heroSection.style.display = 'none'; // Hide the hero
+    mainContent.style.display = 'block'; // Show the main content
 
-    showSlides(topic); // Show the topic's slides
-    updateSidebar(topic); // Update sidebar dynamically
-    hamburgerBtn.classList.add('show'); // Show hamburger menu
-  }, 700); // Wait for the expand animation
+    // Show relevant slides
+    showSlides(topic);
+
+    // Show the hamburger button
+    hamburgerBtn.classList.add('show');
+  }, 700); // Match the animation duration in CSS
 }
+
 
 function updateSidebar(topic) {
   const sidebarSections = document.getElementById('sidebar-sections');
-  sidebarSections.innerHTML = ''; // Clear existing sections
+  sidebarSections.innerHTML = ''; // Clear current content
 
   if (topic === 'co2') {
     sidebarSections.innerHTML = `
-      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('co2', 1)">Global Trends</button>
-      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('co2', 2)">Major Sources</button>
+      <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
+      <ul class="space-y-1">
+        <li>
+          <button 
+            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            onclick="goToSlide('co2', 1)"
+          >
+            Global Trends
+          </button>
+        </li>
+        <li>
+          <button 
+            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            onclick="goToSlide('co2', 2)"
+          >
+            Major Sources
+          </button>
+        </li>
+      </ul>
     `;
   } else if (topic === 'stock') {
     sidebarSections.innerHTML = `
-      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('stock', 1)">Market Trends</button>
-      <button class="w-full text-left px-4 py-1 hover:bg-gray-700" onclick="goToSlide('stock', 2)">Carbon Policies</button>
+      <h2 class="text-xl font-bold mb-2">Stock Market</h2>
+      <ul class="space-y-1">
+        <li>
+          <button 
+            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            onclick="goToSlide('stock', 1)"
+          >
+            Market Trends
+          </button>
+        </li>
+        <li>
+          <button 
+            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            onclick="goToSlide('stock', 2)"
+          >
+            Carbon Policies
+          </button>
+        </li>
+      </ul>
     `;
   }
 }
+
 
 /**********************************************
  * TOGGLE SIDEBAR
  **********************************************/
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
+
   // If sidebar is hidden, show it
-  if (sidebar.classList.contains('show')) {
-    sidebar.classList.remove('show');
-    sidebar.classList.add('-translate-x-full');
+  if (sidebar.classList.contains('hidden')) {
+    sidebar.classList.remove('hidden'); // Make it visible
+    sidebar.classList.add('show', 'translate-x-0'); // Slide in
   } else {
-    sidebar.classList.add('show');
-    sidebar.classList.remove('-translate-x-full');
+    sidebar.classList.remove('show', 'translate-x-0'); // Slide out
+    sidebar.classList.add('hidden'); // Hide it
   }
 }
 
@@ -61,17 +101,18 @@ function showSlides(topic) {
   const co2Slides = document.getElementById('co2-slides');
   const stockSlides = document.getElementById('stock-slides');
 
-  // Hide both sets of slides first
+  // Hide both slide sections
   co2Slides.classList.add('hidden');
   stockSlides.classList.add('hidden');
 
-  // Show the chosen set of slides
+  // Show the relevant section
   if (topic === 'co2') {
     co2Slides.classList.remove('hidden');
   } else if (topic === 'stock') {
     stockSlides.classList.remove('hidden');
   }
 }
+
 
 /**********************************************
  * SHOW SPECIFIC SECTION
