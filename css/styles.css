@@ -135,11 +135,9 @@ h1, h2, p {
 
 /* Sidebar Container */
 #sidebar {
-  transform: translateX(-100%);
-  opacity: 0;
+  transform-origin: center;
+  background: radial-gradient(circle, rgba(31, 41, 55, 1) 70%, rgba(17, 24, 39, 1));
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  background: #1F2937; /* Dark Gray */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Sidebar Show State */

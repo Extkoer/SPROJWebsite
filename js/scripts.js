@@ -119,22 +119,14 @@ function updateSidebar(topic) {
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   if (sidebar.classList.contains("hidden")) {
-    gsap.to(sidebar, {
-      x: 0,
-      duration: 0.5,
-      ease: "power2.inOut",
-      onStart: () => {
-        sidebar.classList.remove("hidden");
-      },
-    });
+    sidebar.classList.remove("hidden");
+    gsap.to(sidebar, { scale: 1, duration: 0.5, ease: "power2.inOut" });
   } else {
     gsap.to(sidebar, {
-      x: "-100%",
+      scale: 0,
       duration: 0.5,
       ease: "power2.inOut",
-      onComplete: () => {
-        sidebar.classList.add("hidden");
-      },
+      onComplete: () => sidebar.classList.add("hidden"),
     });
   }
 }
@@ -187,44 +179,21 @@ function goToSlide(topic, slideNumber) {
 function goHome() {
   const heroSection = document.getElementById("hero");
   const mainContent = document.getElementById("main-content");
-  const sidebarWrapper = document.getElementById("sidebar-wrapper");
   const sidebar = document.getElementById("sidebar");
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
   const heroButtons = document.querySelectorAll(".hero-button");
 
-  // Hide main content and sidebar with animation
-  gsap.to(mainContent, {
-    duration: 0.5,
-    opacity: 0,
-    onComplete: () => {
-      mainContent.style.display = "none";
-      heroSection.style.display = "grid";
-    },
-  });
-
-  // Hide sidebar with animation
-  gsap.to(sidebar, {
-    x: "-100%",
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.inOut",
-    onComplete: () => {
-      sidebarWrapper.classList.add("hidden"); // Hide sidebar wrapper
-    },
-  });
-
-  // Reset hero buttons
+  // Reset Hero Section
   heroButtons.forEach((button) => {
-    gsap.set(button, {
-      opacity: 1,
-      width: "50%",
-      height: "100%",
-      top: "0",
-      left: button.id === "hero-co2" ? "0" : "50%",
-      zIndex: 0,
-    });
-
-    button.classList.remove("expand-full");
+    gsap.set(button, { scale: 1, x: 0, y: 0, zIndex: 0 });
   });
+
+  // Reset visibility
+  gsap.to(mainContent, { opacity: 0, duration: 0.5, onComplete: () => (mainContent.style.display = "none") });
+  gsap.to(sidebar, { scale: 0, duration: 0.5, onComplete: () => sidebar.classList.add("hidden") });
+
+  heroSection.style.display = "grid";
+  hamburgerBtn.classList.add("hidden");
 }
 
 
