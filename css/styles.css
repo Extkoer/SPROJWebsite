@@ -23,8 +23,18 @@ html {
   height: 100vh;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.8);
-  transition: all 1s ease-in-out;
-  transform: none;
+  transition: transform 1s ease-in-out, background-color 1s ease-in-out;
+  transform: scale(1);
+}
+
+.hero-button:not(.expand-full) {
+  transform: scale(0.8);
+  transition: transform 1s ease-in-out;
+  z-index: 1;
+}
+
+.hero-button.expand-full.start-scale {
+  transform: scale(0.5);
 }
 
 .hero-divider {

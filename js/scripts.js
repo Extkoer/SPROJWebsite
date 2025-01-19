@@ -7,7 +7,13 @@ function transitionToSection(topic) {
   const sidebarWrapper = document.getElementById("sidebar-wrapper");
   const clickedHero = document.getElementById(`hero-${topic}`);
 
-  clickedHero.classList.add("expand-full");
+  clickedHero.classList.add("start-scale");
+
+  setTimeout(() => {
+    clickedHero.classList.add("expand-full");
+    clickedHero.classList.remove("start-scale");
+  }, 10);
+
   setTimeout(() => {
     heroSection.style.display = "none";
     mainContent.style.display = "block";
