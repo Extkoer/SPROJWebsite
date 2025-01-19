@@ -40,6 +40,7 @@ h1, h2, p {
   width: 100vw;
   height: 100vh;
   z-index: 100;
+  transform-origin: center center;
   transform: scale(1);
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
   background-color: rgba(0, 0, 0, 0.9);
@@ -96,33 +97,13 @@ h1, h2, p {
  * ANIMATIONS FOR HERO SECTION
  **********************************************/
 
-/* Fade-in Effect for Hero Buttons */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Expand Effect */
+/* Expand Animation */
 @keyframes expand {
   from {
     transform: scale(1);
   }
   to {
     transform: scale(2);
-  }
-}
-
-/* Fade-out Effect */
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 }
 
@@ -134,6 +115,12 @@ h1, h2, p {
 #main-content {
   animation: fadeIn 1s ease-in-out forwards;
   opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 /**********************************************
@@ -161,7 +148,8 @@ h1, h2, p {
 /* Sidebar Container */
 #sidebar {
   transform: translateX(-100%);
-  transition: transform 0.5s ease-in-out;
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   background: #1F2937; /* Dark Gray */
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
 }
@@ -169,6 +157,7 @@ h1, h2, p {
 /* Sidebar Show State */
 #sidebar.show {
   transform: translateX(0);
+  opacity: 1;
 }
 
 /* Sidebar Hidden State */
@@ -178,15 +167,16 @@ h1, h2, p {
 
 /* Sidebar Header and Buttons */
 #sidebar-sections h2 {
-  font-size: 1.25rem;
+  font-size: 2rem;
   color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 #sidebar button {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.5rem;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.25rem;
   background: transparent;
   color: #ffffff;
   border: none;
@@ -205,7 +195,11 @@ h1, h2, p {
 
 /* Hamburger Button */
 #hamburgerBtn {
-  display: flex;
+  display: none; /* Hide on Hero Page */
+}
+
+#hamburgerBtn.show {
+  display: flex; /* Show on Subpages */
   flex-direction: column;
   justify-content: center;
   align-items: center;

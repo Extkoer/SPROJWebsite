@@ -11,21 +11,21 @@ function transitionToSection(topic) {
   // Animate the clicked hero to expand and cover the screen
   gsap.to(clickedHero, {
     duration: 1,
+    position: "fixed",
     top: 0,
     left: 0,
     width: "100vw",
     height: "100vh",
     x: 0,
     y: 0,
-    scale: 1, // Reset scale if any was applied
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
-      heroSection.style.display = "none";
-      mainContent.style.display = "block";
-      sidebarWrapper.classList.remove("hidden");
-      updateSidebar(topic);
-      showSlides(topic);
+      heroSection.style.display = "none"; // Hide hero section
+      mainContent.style.display = "block"; // Show main content
+      sidebarWrapper.classList.remove("hidden"); // Show sidebar
+      updateSidebar(topic); // Update sidebar dynamically
+      showSlides(topic); // Display relevant slides
     },
   });
 
@@ -49,11 +49,11 @@ function updateSidebar(topic) {
   // Populate the sidebar with topic-specific sections
   if (topic === "co2") {
     sidebarSections.innerHTML = `
-      <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
-      <ul class="space-y-1">
+      <h2 class="text-4xl font-bold mb-6">CO2 Emissions</h2>
+      <ul class="space-y-4 text-2xl">
         <li>
           <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
             onclick="goToSlide('co2', 1)"
           >
             Global Trends
@@ -61,7 +61,7 @@ function updateSidebar(topic) {
         </li>
         <li>
           <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
             onclick="goToSlide('co2', 2)"
           >
             Major Sources
@@ -71,11 +71,11 @@ function updateSidebar(topic) {
     `;
   } else if (topic === "stock") {
     sidebarSections.innerHTML = `
-      <h2 class="text-xl font-bold mb-2">Stock Market</h2>
-      <ul class="space-y-1">
+      <h2 class="text-4xl font-bold mb-6">Stock Market</h2>
+      <ul class="space-y-4 text-2xl">
         <li>
           <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
             onclick="goToSlide('stock', 1)"
           >
             Market Trends
@@ -83,7 +83,7 @@ function updateSidebar(topic) {
         </li>
         <li>
           <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700" 
             onclick="goToSlide('stock', 2)"
           >
             Carbon Policies
@@ -177,8 +177,8 @@ function goHome() {
     duration: 0.5,
     opacity: 0,
     onComplete: () => {
-      mainContent.style.display = "none"; // Hide main content
-      heroSection.style.display = "grid"; // Show hero page
+      mainContent.style.display = "none";
+      heroSection.style.display = "grid";
     },
   });
 
@@ -188,24 +188,21 @@ function goHome() {
     duration: 0.5,
     ease: "power2.inOut",
     onComplete: () => {
-      sidebarWrapper.classList.add("hidden"); // Hide sidebar wrapper
+      sidebarWrapper.classList.add("hidden");
     },
   });
 
   // Reset hero buttons
   heroButtons.forEach((button) => {
-    // Reset opacity and scale
-    gsap.to(button, {
-      duration: 0.5,
+    gsap.set(button, {
       opacity: 1,
-      scale: 1,
-      x: 0,
-      y: 0,
+      width: "50%",
+      height: "100%",
+      top: "0",
+      left: button.id === "hero-co2" ? "0" : "50%",
       zIndex: 0,
-      ease: "power2.out",
     });
 
-    // Remove expanded state
     button.classList.remove("expand-full");
   });
 }
