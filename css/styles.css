@@ -1,44 +1,20 @@
-/* Smooth scrolling for snap sections */
 html {
   scroll-behavior: smooth;
 }
 
-/* Hero transition expansions */
+/* Hero Button Styling */
 .hero-button {
   overflow: hidden;
   position: relative;
 }
 
-/* Hero Text Styling */
 .hero-button h1 {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Subtle shadow for readability */
-  font-size: 3.5rem; /* Slightly larger font size */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  font-size: 3.5rem;
   line-height: 1.2;
 }
 
-
-.hero-button.expand {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.9); /* Darken the background */
-  animation: expand 1s forwards, fadeOut 1s forwards 1s;
-}
-
-/* Expand the clicked button to fill the screen and move to the center */
-.hero-button.expand-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2.5); /* Move and enlarge */
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  z-index: 100;
-  opacity: 1;
-}
-
+/* Expand Transition for Clicked Button */
 .hero-button.expand-full {
   position: absolute;
   top: 0;
@@ -46,19 +22,13 @@ html {
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  transform: scale(1.5); /* Slightly larger for smooth expansion */
+  transform: scale(1.5);
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.8); /* Optional dark overlay */
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 1;
 }
 
-/* Fade out other elements */
-.hero-button:not(.expand-full) {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-/* Shrink and fade out the unclicked button(s) */
+/* Shrink and Fade Out for Other Buttons */
 .hero-button.shrink-fade-out {
   transform: scale(0.5);
   opacity: 0;
@@ -66,7 +36,7 @@ html {
   z-index: 1;
 }
 
-/* Hero Section Video Styling */
+/* Hero Button Video Styling */
 .hero-button video {
   position: absolute;
   inset: 0;
@@ -76,24 +46,24 @@ html {
   z-index: 0;
 }
 
-/* Add hover zoom-in effect for hero buttons */
+/* Hover Effect for Hero Buttons */
 .hero-button:hover video {
-  transform: scale(1.1); /* Slight zoom */
+  transform: scale(1.1);
   transition: transform 0.5s ease-in-out;
 }
 
 .hero-button:hover h1 {
-  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9); /* Enhanced text focus */
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9);
   color: #ffffff;
   transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
-
+/* Gradient Overlay for Hero Buttons */
 .hero-button div {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%);
 }
 
-/* Add divider in the middle */
+/* Hero Divider */
 .hero-divider {
   position: absolute;
   top: 0;
@@ -105,6 +75,7 @@ html {
   animation: fade-in 1.5s ease;
 }
 
+/* Animations for Hero Buttons */
 @keyframes expand {
   from {
     transform: scale(1);
@@ -123,23 +94,24 @@ html {
   }
 }
 
-/* Hide the scrollbar for a cleaner snap effect (optional) */
+/* Smooth Scroll Snap */
 ::-webkit-scrollbar {
   width: 0px;
-  background: transparent; /* Chrome/Safari */
+  background: transparent;
 }
 
 .snap-y {
   scroll-snap-type: y mandatory;
 }
+
 .snap-start {
   scroll-snap-align: start;
 }
 
-/* The main content fades in */
+/* Main Content Fade-In Animation */
 #main-content {
   animation: fadeIn 1s ease-in-out forwards;
-  opacity: 0; /* starts invisible */
+  opacity: 0;
 }
 
 @keyframes fadeIn {
@@ -148,24 +120,23 @@ html {
   }
 }
 
-/* Sidebar starts off-screen */
+/* Sidebar Transition */
 #sidebar {
   transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
 }
 
+/* Sidebar Show State */
 #sidebar.show {
   transform: translateX(0);
 }
 
+/* Sidebar Hidden State */
 #sidebar.hidden {
-  display: none; /* Completely hide sidebar when not needed */
+  display: none;
 }
 
-#sidebar.show {
-  transform: translateX(0);
-}
-
+/* Sidebar Button Hover Effect */
 #sidebar button {
   transition: background-color 0.3s ease;
 }
@@ -175,7 +146,7 @@ html {
   color: white;
 }
 
-
+/* Hamburger Button Display */
 #hamburgerBtn.show {
   display: block;
 }

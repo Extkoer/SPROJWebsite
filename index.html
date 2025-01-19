@@ -16,7 +16,7 @@
   <!-- Hamburger Icon (top-left corner) -->
   <button 
     id="hamburgerBtn"
-    class="absolute top-6 left-6 z-50 p-2 bg-white shadow-md rounded focus:outline-none hidden"
+    class="absolute top-6 left-6 z-50 p-2 bg-white shadow-md rounded focus:outline-none"
     onclick="toggleSidebar()"
   >
     <!-- Simple "hamburger" lines -->
@@ -72,28 +72,22 @@
     </div>
   </header>
 
-  <!-- Sidebar (slides out from the left) -->
+  <!-- Sidebar -->
   <nav
     id="sidebar"
     class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white hidden transform -translate-x-full transition-transform duration-500 z-40"
   >
-    <!-- Sidebar Header -->
     <div class="p-8 space-y-6">
-      <!-- Home Button -->
       <button 
         class="text-2xl font-bold w-full text-left focus:outline-none hover:opacity-80" 
         onclick="goHome()"
       >
         Home
       </button>
-
-      <!-- Dynamic Sub-Sections -->
       <div id="sidebar-sections" class="space-y-4">
         <!-- Sub-sections dynamically inserted by JavaScript -->
       </div>
     </div>
-
-    <!-- Sidebar Footer -->
     <div class="absolute bottom-4 left-4">
       <p class="text-sm text-gray-400">
         © 2025 SPROJ
@@ -103,21 +97,16 @@
 
   <!-- Main Content (Slides) -->
   <main id="main-content" class="hidden">
-    <!-- Slide Container for CO2 -->
-    <section 
-      id="co2-slides" 
-      class="snap-y snap-mandatory h-screen overflow-y-scroll"
-    >
-      <!-- Slide 1 -->
-      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8" 
+    <!-- CO2 Slides -->
+    <section id="co2-slides" class="snap-y snap-mandatory h-screen overflow-y-scroll hidden">
+      <div class="snap-start w-full h-screen flex items-center justify-center p-8" 
            style="background-image: url('assets/co2-slide1.jpg'); background-size: cover;">
         <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
           <h1 class="text-5xl font-extrabold mb-4">Global CO2 Trends</h1>
           <p class="text-lg">Explore the worldwide evolution of CO2 emissions over the years.</p>
         </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8" 
+      <div class="snap-start w-full h-screen flex items-center justify-center p-8" 
            style="background-image: url('assets/co2-slide2.jpg'); background-size: cover;">
         <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
           <h1 class="text-5xl font-extrabold mb-4">Major Emission Sources</h1>
@@ -126,21 +115,16 @@
       </div>
     </section>
 
-    <!-- Slide Container for Stock -->
-    <section 
-      id="stock-slides" 
-      class="snap-y snap-mandatory h-screen overflow-y-scroll hidden"
-    >
-      <!-- Slide 1 -->
-      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8"
+    <!-- Stock Slides -->
+    <section id="stock-slides" class="snap-y snap-mandatory h-screen overflow-y-scroll hidden">
+      <div class="snap-start w-full h-screen flex items-center justify-center p-8"
            style="background-image: url('assets/stock-slide1.jpg'); background-size: cover;">
         <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
           <h1 class="text-5xl font-extrabold mb-4">Market Trends</h1>
           <p class="text-lg">Dive into how the stock market reacts to global events and policies.</p>
         </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="snap-start w-full h-screen relative flex items-center justify-center p-8"
+      <div class="snap-start w-full h-screen flex items-center justify-center p-8"
            style="background-image: url('assets/stock-slide2.jpg'); background-size: cover;">
         <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
           <h1 class="text-5xl font-extrabold mb-4">Carbon Policy Impact</h1>
@@ -150,7 +134,6 @@
     </section>
   </main>
 
-  <!-- Scripts -->
   <script src="js/scripts.js"></script>
 </body>
 </html>

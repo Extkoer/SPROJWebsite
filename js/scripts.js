@@ -2,32 +2,39 @@
  * TRANSITION FROM HERO TO SLIDE-BASED SECTION
  **********************************************/
 function transitionToSection(topic) {
-  const heroSection = document.getElementById('hero');
-  const mainContent = document.getElementById('main-content');
-  const sidebar = document.getElementById('sidebar');
+  const heroSection = document.getElementById("hero");
+  const mainContent = document.getElementById("main-content");
+  const sidebar = document.getElementById("sidebar");
   const clickedHero = document.getElementById(`hero-${topic}`);
+  const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
 
   // Start the expansion animation for the clicked hero area
-  clickedHero.classList.add('expand-full'); // Add class for full-screen expansion
+  clickedHero.classList.add("expand-full");
 
-  // Hide the hero section after the animation completes
+  // Shrink and fade out the other hero areas
+  otherHero.forEach((hero) => {
+    hero.classList.add("shrink-fade-out");
+  });
+
+  // After the animation, show the main content
   setTimeout(() => {
-    heroSection.style.display = 'none';
-    mainContent.style.display = 'block'; // Show main content
-    sidebar.classList.remove('hidden'); // Show sidebar
+    heroSection.style.display = "none";
+    mainContent.style.display = "block"; // Show main content
+    sidebar.classList.remove("hidden"); // Show sidebar
     updateSidebar(topic);
     showSlides(topic);
   }, 1000); // Matches the animation duration
 }
 
-
-
+/**********************************************
+ * UPDATE SIDEBAR CONTENT BASED ON TOPIC
+ **********************************************/
 function updateSidebar(topic) {
-  const sidebarSections = document.getElementById('sidebar-sections');
-  sidebarSections.innerHTML = ''; // Clear current content
+  const sidebarSections = document.getElementById("sidebar-sections");
+  sidebarSections.innerHTML = ""; // Clear current content
 
   // Populate the sidebar with topic-specific sections
-  if (topic === 'co2') {
+  if (topic === "co2") {
     sidebarSections.innerHTML = `
       <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
       <ul class="space-y-1">
@@ -49,7 +56,7 @@ function updateSidebar(topic) {
         </li>
       </ul>
     `;
-  } else if (topic === 'stock') {
+  } else if (topic === "stock") {
     sidebarSections.innerHTML = `
       <h2 class="text-xl font-bold mb-2">Stock Market</h2>
       <ul class="space-y-1">
@@ -74,18 +81,17 @@ function updateSidebar(topic) {
   }
 }
 
-
 /**********************************************
  * TOGGLE SIDEBAR
  **********************************************/
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  if (sidebar.classList.contains('hidden')) {
-    sidebar.classList.remove('hidden');
-    sidebar.classList.add('show');
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("hidden")) {
+    sidebar.classList.remove("hidden");
+    sidebar.classList.add("show");
   } else {
-    sidebar.classList.add('hidden');
-    sidebar.classList.remove('show');
+    sidebar.classList.add("hidden");
+    sidebar.classList.remove("show");
   }
 }
 
@@ -93,65 +99,60 @@ function toggleSidebar() {
  * SHOW SLIDES FOR A GIVEN TOPIC
  **********************************************/
 function showSlides(topic) {
-  const co2Slides = document.getElementById('co2-slides');
-  const stockSlides = document.getElementById('stock-slides');
+  const co2Slides = document.getElementById("co2-slides");
+  const stockSlides = document.getElementById("stock-slides");
 
   // Hide both slide sections
-  co2Slides.classList.add('hidden');
-  stockSlides.classList.add('hidden');
+  co2Slides.classList.add("hidden");
+  stockSlides.classList.add("hidden");
 
   // Show the relevant section
-  if (topic === 'co2') {
-    co2Slides.classList.remove('hidden');
-  } else if (topic === 'stock') {
-    stockSlides.classList.remove('hidden');
+  if (topic === "co2") {
+    co2Slides.classList.remove("hidden");
+  } else if (topic === "stock") {
+    stockSlides.classList.remove("hidden");
   }
 }
 
 /**********************************************
- * SHOW SPECIFIC SECTION
- **********************************************/
-function showSection(section) {
-  // This toggles the main content slides
-  showSlides(section);
-}
-
-/**********************************************
- * GOTO SPECIFIC SLIDE
+ * GO TO SPECIFIC SLIDE
  **********************************************/
 function goToSlide(topic, slideNumber) {
   showSlides(topic); // Show the relevant topic's slides
-  
-  const container = (topic === 'co2')
-    ? document.getElementById('co2-slides')
-    : document.getElementById('stock-slides');
+
+  const container =
+    topic === "co2"
+      ? document.getElementById("co2-slides")
+      : document.getElementById("stock-slides");
 
   const slides = container.children;
   if (slideNumber <= slides.length) {
     // Scroll to the target slide
     const targetSlide = slides[slideNumber - 1];
-    targetSlide.scrollIntoView({ behavior: 'smooth' });
+    targetSlide.scrollIntoView({ behavior: "smooth" });
   }
 }
 
-
 /**********************************************
- * GO HOME (RETURN TO HERO)
+ * RETURN TO HERO SECTION
  **********************************************/
 function goHome() {
-  document.getElementById('hero').style.display = 'grid';
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('hamburgerBtn').classList.remove('show');
+  const heroSection = document.getElementById("hero");
+  const mainContent = document.getElementById("main-content");
+  const sidebar = document.getElementById("sidebar");
 
-  // Reset hero button expansion
-  document.querySelectorAll('.hero-button').forEach(button => {
-    button.classList.remove('expand');
+  // Show the hero section
+  heroSection.style.display = "grid";
+  mainContent.style.display = "none";
+
+  // Reset hero button states
+  document.querySelectorAll(".hero-button").forEach((button) => {
+    button.classList.remove("expand-full", "shrink-fade-out");
   });
 
-  // Hide Sidebar
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.remove('show');
-  sidebar.classList.add('-translate-x-full');
+  // Hide the sidebar
+  sidebar.classList.add("hidden");
+  sidebar.classList.remove("show");
 }
 
 
