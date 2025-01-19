@@ -4,24 +4,26 @@
 function transitionToSection(topic) {
   const heroSection = document.getElementById('hero');
   const mainContent = document.getElementById('main-content');
-
-  // Get the clicked hero section
+  const sidebar = document.getElementById('sidebar');
   const clickedHero = document.getElementById(`hero-${topic}`);
-  
-  // Apply the expand effect
-  clickedHero.classList.add('expand');
+  const otherHero = document.querySelectorAll('.hero-button:not(#hero-' + topic + ')');
+
+  clickedHero.style.zIndex = '100';
+  clickedHero.classList.add('expand-center');
+
+  otherHero.forEach((hero) => {
+    hero.classList.add('shrink-fade-out');
+  });
 
   setTimeout(() => {
-    heroSection.style.display = 'none'; // Hide the hero
-    mainContent.style.display = 'block'; // Show main content
-
-    // Show relevant slides
-    showSlides(topic);
-
-    // Populate the sidebar
+    heroSection.style.display = 'none';
+    mainContent.style.display = 'block';
+    sidebar.classList.remove('hidden'); // Show the sidebar
     updateSidebar(topic);
-  }, 1000); // Match the CSS animation duration
+    showSlides(topic);
+  }, 1200);
 }
+
 
 
 function updateSidebar(topic) {
@@ -81,14 +83,12 @@ function updateSidebar(topic) {
  **********************************************/
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
-
-  // If sidebar is hidden, show it
   if (sidebar.classList.contains('hidden')) {
-    sidebar.classList.remove('hidden'); // Make it visible
-    sidebar.classList.add('show', 'translate-x-0'); // Slide in
+    sidebar.classList.remove('hidden');
+    sidebar.classList.add('show');
   } else {
-    sidebar.classList.remove('show', 'translate-x-0'); // Slide out
-    sidebar.classList.add('hidden'); // Hide it
+    sidebar.classList.add('hidden');
+    sidebar.classList.remove('show');
   }
 }
 
