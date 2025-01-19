@@ -176,6 +176,7 @@ function goHome() {
   // Hide sidebar
   gsap.to(sidebar, {
     scale: 0,
+    opacity: 0,
     duration: 0.5,
     onComplete: () => sidebar.classList.add("hidden"),
   });
