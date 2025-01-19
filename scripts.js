@@ -2,12 +2,7 @@ function transitionToSection(section) {
   const heroSection = document.getElementById('hero');
   const mainContent = document.getElementById('main-content');
   const clickedHero = document.getElementById(`hero-${section}`);
-  const allHeroes = document.querySelectorAll('.hero-button');
 
-  // Disable all buttons temporarily
-  allHeroes.forEach(hero => hero.classList.add('pointer-events-none'));
-
-  // Zoom effect on the clicked button
   clickedHero.classList.add('zoom');
 
   setTimeout(() => {
@@ -25,21 +20,12 @@ function showSection(section) {
   document.getElementById(`section-${section}`).classList.remove('hidden');
 }
 
-function showSubsection(subsection) {
-  document.querySelectorAll(`#section-${subsection.split('-')[0]} > div`).forEach(div => div.classList.add('hidden'));
-  document.getElementById(`subsection-${subsection}`).classList.remove('hidden');
-}
-
 function goHome() {
   document.getElementById('hero').style.display = 'grid';
   document.getElementById('main-content').classList.add('hidden');
   document.getElementById('main-content').classList.remove('active');
   document.getElementById('sidebar').classList.add('hidden');
 }
-
-// Initial State
-showSection('co2');
-showSubsection('co2-1');
 
 
 

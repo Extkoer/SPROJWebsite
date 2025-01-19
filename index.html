@@ -31,56 +31,48 @@
   </header>
 
   <!-- Sidebar -->
-  <div id="sidebar" class="fixed top-1/4 left-4 w-20 h-auto bg-gray-100 rounded-full shadow-2xl p-4 flex flex-col items-center space-y-4 hidden">
-    <button class="chapter flex items-center px-2 py-2 space-x-2" onclick="goHome()">
-      <span class="text-sm font-bold">Home</span>
+  <div id="sidebar" class="fixed top-20 right-4 w-60 p-4 bg-gray-800 text-white rounded-xl shadow-lg space-y-6 z-50 hidden">
+    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-indigo-500 hover:bg-indigo-600 transition" onclick="goHome()">
+      Home
     </button>
-    <div>
-      <button id="sidebar-co2" class="chapter active flex items-center px-2 py-2 space-x-2" onclick="showSection('co2')">
-        <span class="text-sm font-bold">CO2</span>
-      </button>
-      <ul id="subsections-co2" class="subsections hidden mt-2">
-        <li class="text-xs"><button onclick="showSubsection('co2-1')">Trends</button></li>
-        <li class="text-xs mt-1"><button onclick="showSubsection('co2-2')">Sources</button></li>
-      </ul>
-    </div>
-    <div>
-      <button id="sidebar-stock" class="chapter flex items-center px-2 py-2 space-x-2" onclick="showSection('stock')">
-        <span class="text-sm font-bold">Stock</span>
-      </button>
-      <ul id="subsections-stock" class="subsections hidden mt-2">
-        <li class="text-xs"><button onclick="showSubsection('stock-1')">Trends</button></li>
-        <li class="text-xs mt-1"><button onclick="showSubsection('stock-2')">Policies</button></li>
-      </ul>
-    </div>
+    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-green-500 hover:bg-green-600 transition" onclick="showSection('co2')">
+      CO2 Emissions
+    </button>
+    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-blue-500 hover:bg-blue-600 transition" onclick="showSection('stock')">
+      Stock Market
+    </button>
   </div>
 
   <!-- Main Content -->
-  <main id="main-content" class="hidden transition-opacity duration-700">
+  <main id="main-content" class="hidden">
     <!-- CO2 Emissions Section -->
-    <section id="section-co2" class="hidden p-8 bg-gradient-to-r from-green-400 to-green-600 text-white shadow-lg">
-      <h1 class="text-4xl font-extrabold mb-6">CO2 Emissions</h1>
-      <div id="subsection-co2-1" class="mt-8">
-        <h2 class="text-2xl font-bold underline decoration-white">CO2 Trends</h2>
-        <canvas id="co2Chart" class="w-full max-w-4xl mt-4 shadow-lg"></canvas>
-      </div>
-      <div id="subsection-co2-2" class="hidden mt-8">
-        <h2 class="text-2xl font-bold underline decoration-white">Emission Sources</h2>
-        <p>Details about emission sources...</p>
-      </div>
+    <section id="section-co2" class="min-h-screen p-16 bg-green-100 text-gray-900">
+      <h1 class="text-5xl font-extrabold mb-10">CO2 Emissions</h1>
+      <article class="space-y-12">
+        <div class="blog-block">
+          <h2 class="text-3xl font-bold mb-4">Global CO2 Trends</h2>
+          <canvas id="co2Chart" class="w-full max-w-4xl shadow-lg"></canvas>
+        </div>
+        <div class="blog-block">
+          <h2 class="text-3xl font-bold mb-4">Emission Sources</h2>
+          <p class="text-lg">Details about emission sources...</p>
+        </div>
+      </article>
     </section>
 
     <!-- Stock Market Section -->
-    <section id="section-stock" class="hidden p-8 bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg">
-      <h1 class="text-4xl font-extrabold mb-6">Stock Market</h1>
-      <div id="subsection-stock-1" class="mt-8">
-        <h2 class="text-2xl font-bold underline decoration-white">Market Trends</h2>
-        <canvas id="stockChart" class="w-full max-w-4xl mt-4 shadow-lg"></canvas>
-      </div>
-      <div id="subsection-stock-2" class="hidden mt-8">
-        <h2 class="text-2xl font-bold underline decoration-white">Carbon Policy Effects</h2>
-        <p>Details about the effects of carbon policies...</p>
-      </div>
+    <section id="section-stock" class="min-h-screen p-16 bg-blue-100 text-gray-900">
+      <h1 class="text-5xl font-extrabold mb-10">Stock Market</h1>
+      <article class="space-y-12">
+        <div class="blog-block">
+          <h2 class="text-3xl font-bold mb-4">Market Trends</h2>
+          <canvas id="stockChart" class="w-full max-w-4xl shadow-lg"></canvas>
+        </div>
+        <div class="blog-block">
+          <h2 class="text-3xl font-bold mb-4">Carbon Policy Effects</h2>
+          <p class="text-lg">Details about the effects of carbon policies...</p>
+        </div>
+      </article>
     </section>
   </main>
 
