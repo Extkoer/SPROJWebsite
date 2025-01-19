@@ -4,7 +4,6 @@
 function transitionToSection(topic) {
   const heroSection = document.getElementById('hero');
   const mainContent = document.getElementById('main-content');
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
 
   // Get the clicked hero section
   const clickedHero = document.getElementById(`hero-${topic}`);
@@ -12,17 +11,16 @@ function transitionToSection(topic) {
   // Apply the expand effect
   clickedHero.classList.add('expand');
 
-  // Wait for the transition to complete
   setTimeout(() => {
     heroSection.style.display = 'none'; // Hide the hero
-    mainContent.style.display = 'block'; // Show the main content
+    mainContent.style.display = 'block'; // Show main content
 
     // Show relevant slides
     showSlides(topic);
 
-    // Show the hamburger button
-    hamburgerBtn.classList.add('show');
-  }, 700); // Match the animation duration in CSS
+    // Populate the sidebar
+    updateSidebar(topic);
+  }, 1000); // Match the CSS animation duration
 }
 
 
@@ -112,7 +110,6 @@ function showSlides(topic) {
     stockSlides.classList.remove('hidden');
   }
 }
-
 
 /**********************************************
  * SHOW SPECIFIC SECTION
