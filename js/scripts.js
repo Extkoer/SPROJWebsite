@@ -1,6 +1,3 @@
-/**********************************************
- * TRANSITION FROM HERO TO SLIDE-BASED SECTION
- **********************************************/
 function transitionToSection(topic) {
   const heroSection = document.getElementById("hero");
   const mainContent = document.getElementById("main-content");
@@ -11,17 +8,20 @@ function transitionToSection(topic) {
   // Get the clicked button's current position and size
   const rect = clickedHero.getBoundingClientRect();
 
-  // Calculate scaling factors
-  const scaleX = window.innerWidth / rect.width;
-  const scaleY = window.innerHeight / rect.height;
+  // Calculate scaling and translation factors
+  const scaleX = window.innerWidth / rect.width; // Scale to viewport width
+  const scaleY = window.innerHeight / rect.height; // Scale to viewport height
+  const translateX = -rect.left; // Move to align left edge to viewport
+  const translateY = -rect.top; // Move to align top edge to viewport
 
-  // Animate the clicked hero to expand and cover the screen
+  // Animate the clicked button to expand and cover the screen
   gsap.to(clickedHero, {
     duration: 1,
-    x: rect.left * -1, // Move left to align with viewport
-    y: rect.top * -1,  // Move top to align with viewport
+    x: translateX,
+    y: translateY,
     scaleX: scaleX,
     scaleY: scaleY,
+    transformOrigin: "top left", // Transform relative to the top-left corner
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
@@ -29,12 +29,12 @@ function transitionToSection(topic) {
       heroSection.style.display = "none";
       mainContent.style.display = "block";
       sidebarWrapper.classList.remove("hidden");
-      updateSidebar(topic); // Update sidebar content dynamically
-      showSlides(topic); // Display relevant slides
+      updateSidebar(topic);
+      showSlides(topic);
     },
   });
 
-  // Animate the other hero buttons to fade out
+  // Fade out other buttons
   otherHero.forEach((hero) => {
     gsap.to(hero, {
       duration: 0.5,
@@ -43,6 +43,7 @@ function transitionToSection(topic) {
     });
   });
 }
+
 
 /**********************************************
  * UPDATE SIDEBAR CONTENT BASED ON TOPIC
