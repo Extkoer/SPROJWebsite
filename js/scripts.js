@@ -6,34 +6,27 @@ function transitionToSection(topic) {
   const mainContent = document.getElementById("main-content");
   const sidebarWrapper = document.getElementById("sidebar-wrapper");
   const clickedHero = document.getElementById(`hero-${topic}`);
-  const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
 
-  // Animate the clicked hero to expand and cover the screen
-  gsap.to(clickedHero, {
-    duration: 1,
-    x: 0,
-    y: 0,
-    scale: 1.5,
-    zIndex: 100,
-    ease: "power2.inOut",
-    onComplete: () => {
-      // Hide the hero section after animation completes
-      heroSection.style.display = "none";
-      mainContent.style.display = "block"; // Show main content
-      sidebarWrapper.classList.remove("hidden"); // Show sidebar
-      updateSidebar(topic); // Update sidebar content dynamically
-      showSlides(topic); // Display relevant slides
-    },
+  // Disable Hamburger on Hero
+  hamburgerBtn.classList.remove("show");
+
+  // Animate Hero Expansion
+  clickedHero.classList.add("expand-full");
+
+  // Shrink Other Buttons
+  document.querySelectorAll(".hero-button:not(.expand-full)").forEach(button => {
+    button.classList.add("shrink-fade-out");
   });
 
-  // Animate the other hero buttons to fade out
-  otherHero.forEach((hero) => {
-    gsap.to(hero, {
-      duration: 0.5,
-      opacity: 0,
-      ease: "power2.out",
-    });
-  });
+  // Show Main Content and Sidebar After Transition
+  setTimeout(() => {
+    heroSection.style.display = "none";
+    mainContent.style.display = "block";
+    sidebarWrapper.classList.add("show");
+    updateSidebar(topic);
+    showSlides(topic);
+  }, 1000);
 }
 
 /**********************************************
@@ -43,78 +36,22 @@ function updateSidebar(topic) {
   const sidebarSections = document.getElementById("sidebar-sections");
   sidebarSections.innerHTML = ""; // Clear current content
 
-  // Populate the sidebar with topic-specific sections
-  if (topic === "co2") {
-    sidebarSections.innerHTML = `
-      <h2 class="text-xl font-bold mb-2">CO2 Emissions</h2>
-      <ul class="space-y-1">
-        <li>
-          <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-            onclick="goToSlide('co2', 1)"
-          >
-            Global Trends
-          </button>
-        </li>
-        <li>
-          <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-            onclick="goToSlide('co2', 2)"
-          >
-            Major Sources
-          </button>
-        </li>
-      </ul>
-    `;
-  } else if (topic === "stock") {
-    sidebarSections.innerHTML = `
-      <h2 class="text-xl font-bold mb-2">Stock Market</h2>
-      <ul class="space-y-1">
-        <li>
-          <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-            onclick="goToSlide('stock', 1)"
-          >
-            Market Trends
-          </button>
-        </li>
-        <li>
-          <button 
-            class="w-full text-left px-4 py-1 hover:bg-gray-700" 
-            onclick="goToSlide('stock', 2)"
-          >
-            Carbon Policies
-          </button>
-        </li>
-      </ul>
-    `;
-  }
+  // Populate Sidebar with Sections
+  const sections = topic === "co2" ? ["Global Trends", "Major Sources"] : ["Market Trends", "Carbon Policies"];
+  sections.forEach((section, index) => {
+    const h1 = document.createElement("h1");
+    h1.textContent = section;
+    h1.onclick = () => goToSlide(topic, index + 1);
+    sidebarSections.appendChild(h1);
+  });
 }
 
 /**********************************************
  * TOGGLE SIDEBAR
  **********************************************/
 function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar.classList.contains("hidden")) {
-    gsap.to(sidebar, {
-      x: 0,
-      duration: 0.5,
-      ease: "power2.inOut",
-      onStart: () => {
-        sidebar.classList.remove("hidden");
-      },
-    });
-  } else {
-    gsap.to(sidebar, {
-      x: "-100%",
-      duration: 0.5,
-      ease: "power2.inOut",
-      onComplete: () => {
-        sidebar.classList.add("hidden");
-      },
-    });
-  }
+  const sidebarWrapper = document.getElementById("sidebar-wrapper");
+  sidebarWrapper.classList.toggle("show");
 }
 
 /**********************************************
@@ -124,11 +61,11 @@ function showSlides(topic) {
   const co2Slides = document.getElementById("co2-slides");
   const stockSlides = document.getElementById("stock-slides");
 
-  // Hide both slide sections
+  // Hide Both Sections
   co2Slides.classList.add("hidden");
   stockSlides.classList.add("hidden");
 
-  // Show the relevant section
+  // Show the Relevant Section
   if (topic === "co2") {
     co2Slides.classList.remove("hidden");
   } else if (topic === "stock") {
@@ -140,22 +77,11 @@ function showSlides(topic) {
  * GO TO SPECIFIC SLIDE
  **********************************************/
 function goToSlide(topic, slideNumber) {
-  showSlides(topic); // Show the relevant topic's slides
-
-  const container =
-    topic === "co2"
-      ? document.getElementById("co2-slides")
-      : document.getElementById("stock-slides");
-
+  const container = topic === "co2" ? document.getElementById("co2-slides") : document.getElementById("stock-slides");
   const slides = container.children;
+
   if (slideNumber <= slides.length) {
-    // Scroll to the target slide
-    const targetSlide = slides[slideNumber - 1];
-    gsap.to(container, {
-      duration: 0.5,
-      scrollTo: targetSlide,
-      ease: "power2.out",
-    });
+    slides[slideNumber - 1].scrollIntoView({ behavior: "smooth" });
   }
 }
 
@@ -166,22 +92,16 @@ function goHome() {
   const heroSection = document.getElementById("hero");
   const mainContent = document.getElementById("main-content");
   const sidebarWrapper = document.getElementById("sidebar-wrapper");
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
 
-  // Reset animations and show hero
-  gsap.to(mainContent, {
-    duration: 0.5,
-    opacity: 0,
-    onComplete: () => {
-      mainContent.style.display = "none"; // Hide main content
-      heroSection.style.display = "grid"; // Show hero page
-      sidebarWrapper.classList.add("hidden"); // Hide sidebar
-    },
-  });
+  heroSection.style.display = "grid";
+  mainContent.style.display = "none";
+  sidebarWrapper.classList.remove("show");
+  hamburgerBtn.classList.add("show");
 
-  // Reset hero button states
-  document.querySelectorAll(".hero-button").forEach((button) => {
-    button.classList.remove("expand-full");
-    gsap.set(button, { opacity: 1, transform: "scale(1)" });
+  // Reset Hero Expansion
+  document.querySelectorAll(".hero-button").forEach(button => {
+    button.classList.remove("expand-full", "shrink-fade-out");
   });
 }
 
