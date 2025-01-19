@@ -20,24 +20,9 @@ h1, h2, p {
 
 /* Hero Button Base Styling */
 .hero-button {
-  position: relative;
   overflow: hidden;
+  position: relative;
   cursor: pointer;
-  border: 3px solid transparent; /* Default transparent border */
-  clip-path: polygon(
-    0% 5%, 10% 0%, 20% 5%, 30% 0%, 40% 5%, 
-    50% 0%, 60% 5%, 70% 0%, 80% 5%, 90% 0%, 
-    100% 5%, 100% 95%, 90% 100%, 80% 95%, 
-    70% 100%, 60% 95%, 50% 100%, 40% 95%, 
-    30% 100%, 20% 95%, 10% 100%, 0% 95%
-  ); /* Create jagged edges */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, clip-path 0.3s ease;
-}
-
-.hero-button:hover {
-  border: 3px solid #4F46E5; /* Highlight border on hover */
-  transform: scale(1.05); /* Slight zoom-in effect */
-  box-shadow: 0 0 20px rgba(79, 70, 229, 0.5); /* Add glowing effect */
 }
 
 .hero-button h1 {
@@ -250,6 +235,7 @@ h1, h2, p {
     width: 100%;
   }
 }
+
 
   
   
