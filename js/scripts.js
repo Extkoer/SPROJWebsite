@@ -218,6 +218,23 @@ function goHome() {
   });
 }
 
+// Create and track custom cursor
+document.addEventListener("mousemove", (event) => {
+  const cursor = document.querySelector(".cursor");
+  cursor.style.left = `${event.pageX}px`;
+  cursor.style.top = `${event.pageY}px`;
+});
+
+// Enlarge cursor on hover
+document.querySelectorAll(".hero-button").forEach((button) => {
+  button.addEventListener("mouseenter", () => {
+    document.querySelector(".cursor").classList.add("hover");
+  });
+  button.addEventListener("mouseleave", () => {
+    document.querySelector(".cursor").classList.remove("hover");
+  });
+});
+
 
 
 
