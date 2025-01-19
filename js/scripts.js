@@ -28,6 +28,14 @@ function transitionToSection(topic) {
       heroSection.style.display = "none";
       mainContent.style.display = "block";
       sidebarWrapper.classList.remove("hidden");
+
+      gsap.to("#sidebar", {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.inOut",
+      });
+
       updateSidebar(topic);
       showSlides(topic);
     },
@@ -196,10 +204,11 @@ function goHome() {
   // Hide sidebar with animation
   gsap.to(sidebar, {
     x: "-100%",
+    opacity: 0,
     duration: 0.5,
     ease: "power2.inOut",
     onComplete: () => {
-      sidebarWrapper.classList.add("hidden");
+      sidebarWrapper.classList.add("hidden"); // Hide sidebar wrapper
     },
   });
 
