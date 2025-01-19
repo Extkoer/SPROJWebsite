@@ -1,18 +1,16 @@
 function transitionToSection(section) {
   const heroSection = document.getElementById('hero');
   const mainContent = document.getElementById('main-content');
-  const clickedHero = document.getElementById(`hero-${section}`);
 
-  clickedHero.classList.add('zoom');
+  heroSection.style.display = 'none';
+  mainContent.style.display = 'block';
 
-  setTimeout(() => {
-    heroSection.style.display = 'none';
-    mainContent.classList.add('active');
-    mainContent.classList.remove('hidden');
-    document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
-    document.getElementById(`section-${section}`).classList.remove('hidden');
-    document.getElementById('sidebar').classList.remove('hidden');
-  }, 700);
+  // Show specific section
+  document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+  document.getElementById(`section-${section}`).classList.remove('hidden');
+
+  // Show Sidebar
+  document.getElementById('sidebar').classList.remove('hidden');
 }
 
 function showSection(section) {
@@ -22,10 +20,10 @@ function showSection(section) {
 
 function goHome() {
   document.getElementById('hero').style.display = 'grid';
-  document.getElementById('main-content').classList.add('hidden');
-  document.getElementById('main-content').classList.remove('active');
+  document.getElementById('main-content').style.display = 'none';
   document.getElementById('sidebar').classList.add('hidden');
 }
+
 
 
 

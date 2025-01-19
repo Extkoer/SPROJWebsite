@@ -6,71 +6,76 @@
   <title>SPROJ: CO2 Emissions & Stock Market</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
 
   <!-- Hero Section -->
   <header id="hero" class="h-screen grid grid-cols-1 md:grid-cols-2 relative">
-    <!-- CO2 Emissions Button -->
-    <div id="hero-co2" class="relative group cursor-pointer hero-button" onclick="transitionToSection('co2')">
+    <!-- CO2 Emissions -->
+    <div class="relative group cursor-pointer" onclick="transitionToSection('co2')">
       <div class="h-full bg-cover bg-center transition-transform duration-700" style="background-image: url('co2-image.jpg');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
-          <h1 class="text-4xl font-extrabold tracking-wider">CO2 Emissions</h1>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center">
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-wider">CO2 Emissions</h1>
         </div>
       </div>
     </div>
-    <!-- Stock Market Button -->
-    <div id="hero-stock" class="relative group cursor-pointer hero-button" onclick="transitionToSection('stock')">
+    <!-- Stock Market -->
+    <div class="relative group cursor-pointer" onclick="transitionToSection('stock')">
       <div class="h-full bg-cover bg-center transition-transform duration-700" style="background-image: url('stock-image.jpg');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center group-hover:bg-black/30 transition-all">
-          <h1 class="text-4xl font-extrabold tracking-wider">Stock Market</h1>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center text-white text-center">
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-wider">Stock Market</h1>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Sidebar -->
-  <div id="sidebar" class="fixed top-20 right-4 w-60 p-4 bg-gray-800 text-white rounded-xl shadow-lg space-y-6 z-50 hidden">
-    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-indigo-500 hover:bg-indigo-600 transition" onclick="goHome()">
-      Home
-    </button>
-    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-green-500 hover:bg-green-600 transition" onclick="showSection('co2')">
-      CO2 Emissions
-    </button>
-    <button class="chapter w-full text-left px-4 py-2 rounded-lg font-bold bg-blue-500 hover:bg-blue-600 transition" onclick="showSection('stock')">
-      Stock Market
-    </button>
-  </div>
+  <!-- Sidebar (only on blog pages) -->
+  <nav id="sidebar" class="fixed top-1/4 right-6 hidden z-50">
+    <div class="bg-gray-800 text-white w-48 p-4 rounded-lg shadow-lg space-y-4">
+      <button class="w-full text-left font-bold hover:bg-gray-700 px-4 py-2 rounded" onclick="goHome()">Home</button>
+      <button class="w-full text-left font-bold hover:bg-gray-700 px-4 py-2 rounded" onclick="showSection('co2')">CO2 Emissions</button>
+      <button class="w-full text-left font-bold hover:bg-gray-700 px-4 py-2 rounded" onclick="showSection('stock')">Stock Market</button>
+    </div>
+  </nav>
 
-  <!-- Main Content -->
+  <!-- Blog Sections -->
   <main id="main-content" class="hidden">
-    <!-- CO2 Emissions Section -->
-    <section id="section-co2" class="min-h-screen p-16 bg-green-100 text-gray-900">
-      <h1 class="text-5xl font-extrabold mb-10">CO2 Emissions</h1>
-      <article class="space-y-12">
-        <div class="blog-block">
-          <h2 class="text-3xl font-bold mb-4">Global CO2 Trends</h2>
-          <canvas id="co2Chart" class="w-full max-w-4xl shadow-lg"></canvas>
+    <!-- CO2 Emissions -->
+    <section id="section-co2" class="min-h-screen p-8">
+      <div class="bg-gray-800 text-white p-12 rounded-lg shadow-lg mb-12">
+        <h1 class="text-5xl font-extrabold mb-4">CO2 Emissions</h1>
+        <p class="text-lg">Explore trends and insights about global CO2 emissions and their impact.</p>
+      </div>
+      <article class="space-y-16">
+        <div>
+          <img src="co2-trends.jpg" alt="CO2 Trends" class="w-full rounded-lg shadow-lg">
+          <h2 class="text-4xl font-bold mt-8">Global CO2 Trends</h2>
+          <p class="text-lg mt-4">Detailed analysis of how CO2 emissions have evolved globally over the past decades.</p>
         </div>
-        <div class="blog-block">
-          <h2 class="text-3xl font-bold mb-4">Emission Sources</h2>
-          <p class="text-lg">Details about emission sources...</p>
+        <div>
+          <img src="emission-sources.jpg" alt="Emission Sources" class="w-full rounded-lg shadow-lg">
+          <h2 class="text-4xl font-bold mt-8">Major Emission Sources</h2>
+          <p class="text-lg mt-4">Insights into the major contributors to CO2 emissions and strategies to mitigate their impact.</p>
         </div>
       </article>
     </section>
 
-    <!-- Stock Market Section -->
-    <section id="section-stock" class="min-h-screen p-16 bg-blue-100 text-gray-900">
-      <h1 class="text-5xl font-extrabold mb-10">Stock Market</h1>
-      <article class="space-y-12">
-        <div class="blog-block">
-          <h2 class="text-3xl font-bold mb-4">Market Trends</h2>
-          <canvas id="stockChart" class="w-full max-w-4xl shadow-lg"></canvas>
+    <!-- Stock Market -->
+    <section id="section-stock" class="min-h-screen p-8">
+      <div class="bg-gray-800 text-white p-12 rounded-lg shadow-lg mb-12">
+        <h1 class="text-5xl font-extrabold mb-4">Stock Market</h1>
+        <p class="text-lg">Discover the intersection of stock market trends and environmental policies.</p>
+      </div>
+      <article class="space-y-16">
+        <div>
+          <img src="market-trends.jpg" alt="Market Trends" class="w-full rounded-lg shadow-lg">
+          <h2 class="text-4xl font-bold mt-8">Market Trends</h2>
+          <p class="text-lg mt-4">A look at how stock markets have responded to major environmental and economic shifts.</p>
         </div>
-        <div class="blog-block">
-          <h2 class="text-3xl font-bold mb-4">Carbon Policy Effects</h2>
-          <p class="text-lg">Details about the effects of carbon policies...</p>
+        <div>
+          <img src="carbon-policy.jpg" alt="Carbon Policy" class="w-full rounded-lg shadow-lg">
+          <h2 class="text-4xl font-bold mt-8">Impact of Carbon Policies</h2>
+          <p class="text-lg mt-4">Analyzing the effects of global carbon policies on investment strategies and market performance.</p>
         </div>
       </article>
     </section>

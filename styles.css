@@ -1,61 +1,37 @@
-/* Hero Button Animations */
-.hero-button {
-  overflow: hidden;
+/* General Styles */
+body {
+  font-family: 'Inter', sans-serif;
 }
 
-.hero-button .h-full {
-  transition: transform 0.7s ease-in-out;
-}
-
-.hero-button.zoom .h-full {
-  transform: scale(1.5); /* Zoom into the image */
-}
-
-/* Main Content Transitions */
 #main-content {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
+  display: none;
+  animation: fadeIn 1s ease-in-out;
 }
 
-#main-content.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateY(0);
-  transition: all 0.8s ease;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Sidebar Styling */
+/* Sidebar Styles */
 #sidebar {
-  position: fixed;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 16rem;
-  background: #1a202c;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  gap: 1rem;
 }
 
-.chapter {
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  background: #4a5568;
-  color: white;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+/* Blog Content */
+article img {
+  transition: transform 0.3s ease;
 }
 
-.chapter:hover {
-  background: #2c5282;
+article img:hover {
   transform: scale(1.05);
 }
   
