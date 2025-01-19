@@ -20,9 +20,66 @@ h1, h2, p {
 
 /* Hero Button Base Styling */
 .hero-button {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
   cursor: pointer;
+  border: 3px solid transparent; /* Default transparent border */
+  clip-path: polygon(
+    0% 5%, 10% 0%, 20% 5%, 30% 0%, 40% 5%, 
+    50% 0%, 60% 5%, 70% 0%, 80% 5%, 90% 0%, 
+    100% 5%, 100% 95%, 90% 100%, 80% 95%, 
+    70% 100%, 60% 95%, 50% 100%, 40% 95%, 
+    30% 100%, 20% 95%, 10% 100%, 0% 95%
+  ); /* Create jagged edges */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, clip-path 0.3s ease;
+}
+
+.hero-button:hover {
+  border: 3px solid #4F46E5; /* Highlight border on hover */
+  transform: scale(1.05); /* Slight zoom-in effect */
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.5); /* Add glowing effect */
+}
+
+.hero-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 46, 229, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  ); /* Gradient effect overlay */
+  mix-blend-mode: overlay;
+  pointer-events: none; /* Prevent interaction */
+  clip-path: polygon(
+    0% 5%, 10% 0%, 20% 5%, 30% 0%, 40% 5%, 
+    50% 0%, 60% 5%, 70% 0%, 80% 5%, 90% 0%, 
+    100% 5%, 100% 95%, 90% 100%, 80% 95%, 
+    70% 100%, 60% 95%, 50% 100%, 40% 95%, 
+    30% 100%, 20% 95%, 10% 100%, 0% 95%
+  ); /* Match jagged border */
+}
+
+.hero-button:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(79, 70, 229, 0.3) 100%
+  );
+}
+
+.hero-button:hover {
+  clip-path: polygon(
+    0% 2%, 10% 0%, 20% 2%, 30% 0%, 40% 2%, 
+    50% 0%, 60% 2%, 70% 0%, 80% 2%, 90% 0%, 
+    100% 2%, 100% 98%, 90% 100%, 80% 98%, 
+    70% 100%, 60% 98%, 50% 100%, 40% 98%, 
+    30% 100%, 20% 98%, 10% 100%, 0% 98%
+  ); /* Adjust jagged shape on hover */
 }
 
 .hero-button h1 {
