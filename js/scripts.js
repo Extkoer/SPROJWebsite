@@ -8,23 +8,28 @@ function transitionToSection(topic) {
   const clickedHero = document.getElementById(`hero-${topic}`);
   const otherHero = document.querySelectorAll(`.hero-button:not(#hero-${topic})`);
 
+  // Get the clicked button's current position and size
+  const rect = clickedHero.getBoundingClientRect();
+
+  // Calculate scaling factors
+  const scaleX = window.innerWidth / rect.width;
+  const scaleY = window.innerHeight / rect.height;
+
   // Animate the clicked hero to expand and cover the screen
   gsap.to(clickedHero, {
     duration: 1,
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    x: 0,
-    y: 0,
+    x: rect.left * -1, // Move left to align with viewport
+    y: rect.top * -1,  // Move top to align with viewport
+    scaleX: scaleX,
+    scaleY: scaleY,
     zIndex: 100,
     ease: "power2.inOut",
     onComplete: () => {
-      heroSection.style.display = "none"; // Hide hero section
-      mainContent.style.display = "block"; // Show main content
-      sidebarWrapper.classList.remove("hidden"); // Show sidebar
-      updateSidebar(topic); // Update sidebar dynamically
+      // After animation, hide the hero and show the main content
+      heroSection.style.display = "none";
+      mainContent.style.display = "block";
+      sidebarWrapper.classList.remove("hidden");
+      updateSidebar(topic); // Update sidebar content dynamically
       showSlides(topic); // Display relevant slides
     },
   });
