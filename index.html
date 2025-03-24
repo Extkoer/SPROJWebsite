@@ -5,83 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPROJ Report - Vertical Reveal.js</title>
 
+  <!-- Google Font -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
     rel="stylesheet"
   />
 
+  <!-- Reveal.js Core Styles -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/reveal.css"
   />
 
+  <!-- Reveal.js Theme (try 'simple.css', 'white.css', etc.) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/theme/simple.css"
     id="theme"
   />
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Custom CSS (embedded here for simplicity) -->
+  <style>
+    /* Basic Reset */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      height: 100%;
+    }
+
+    /* Reveal Container */
+    .reveal {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Headings & Text */
+    h1, h2, h3 {
+      color: #333;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 1em;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-top: 0.5em;
+      color: #777;
+      font-weight: 300;
+      margin-bottom: 1em;
+    }
+
+    /* Example Layout for a "Chart" + Text Box */
+    .chart-section {
+      display: flex;
+      flex-direction: column; /* Stacks chart & text vertically on narrow screens */
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .chart-area {
+      width: 100%;
+      max-width: 600px;
+      height: 300px; /* Placeholder height for your chart */
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #ccc;
+      color: #999;
+      font-size: 1.2rem;
+    }
+
+    .text-box {
+      background: #fafafa;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Centering slides with custom background color */
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center; /* center text horizontally */
+      min-height: 100vh;  /* ensure slide fills vertical space */
+      padding: 2rem;
+    }
+  </style>
 </head>
 <body>
+  <!-- Reveal.js Container -->
   <div class="reveal">
     <div class="slides">
+      <!-- Slide 1 -->
       <section data-background-color="#f7f7f7">
         <h1>SPROJ Report</h1>
         <p class="subtitle">Exploring Stock Returns Determinants</p>
       </section>
 
+      <!-- Slide 2 -->
       <section data-background-color="#ffffff">
         <h2>Project Overview</h2>
         <p>A deep dive into datasets and analysis methods that unveil stock market behavior.</p>
       </section>
 
+      <!-- Slide 3: Example Chart + Text Layout -->
       <section data-background-color="#f7f7f7">
         <h2>Daily Stock Returns</h2>
-        <p>Technical indicators and machine learning models in action.</p>
+        <!-- Chart + Text container -->
+        <div class="chart-section">
+          <!-- Chart Placeholder -->
+          <div class="chart-area">
+            Chart Placeholder
+          </div>
+          <!-- Text Box below or alongside chart -->
+          <div class="text-box">
+            <h3>Technical Indicators</h3>
+            <p>
+              This box can contain a brief explanation of the chart or relevant findings. 
+              You could embed results from ML models, CAPM vs. GBM performance, or 
+              candlestick pattern insights here.
+            </p>
+          </div>
+        </div>
       </section>
 
+      <!-- Slide 4 -->
       <section data-background-color="#ffffff">
         <h2>ML Model Comparison</h2>
         <p>Exploring CAPM, GBM, Candlestick Patterns, and Combined Indicators.</p>
       </section>
 
+      <!-- Slide 5: Another Chart Example -->
       <section data-background-color="#f7f7f7">
         <h2>Monthly Stock Returns</h2>
-        <p>Macroeconomic indicators via pooled OLS cross-section analysis.</p>
+        <div class="chart-section">
+          <div class="chart-area">
+            Another Chart
+          </div>
+          <div class="text-box">
+            <h3>Macroeconomic Indicators</h3>
+            <p>
+              Summarize your findings or interpret the graph. For instance, discuss how 
+              changes in Crude Oil or Gold prices correlate with monthly returns.
+            </p>
+          </div>
+        </div>
       </section>
 
+      <!-- Slide 6 -->
       <section data-background-color="#ffffff">
-        <h2>Key Variables</h2>
-        <p>Analyzing Crude Oil, Natural Gas, and Gold.</p>
-      </section>
-
-      <section data-background-color="#f7f7f7">
         <h2>Cross-Section Analysis</h2>
         <p>Insights from fundamental indicators: Revenue, Employees, and P/E Ratio.</p>
       </section>
 
-      <section data-background-color="#ffffff">
+      <!-- Slide 7 -->
+      <section data-background-color="#f7f7f7">
         <h2>Event Studies</h2>
         <p>Key events and their impact on market performance.</p>
+      </section>
+
+      <!-- Slide 8 -->
+      <section data-background-color="#ffffff">
+        <h2>Conclusion</h2>
+        <p>Final remarks or next steps in research.</p>
       </section>
     </div>
   </div>
 
+  <!-- Reveal.js Script -->
   <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
   <script>
     Reveal.initialize({
+      // Basic Reveal.js config
       controls: true,
       progress: true,
       slideNumber: true,
       history: false,
       center: true,
-      transition: 'slide',
-      transitionSpeed: 'fast',
+      transition: 'slide',  // 'slide', 'fade', 'convex', 'concave', 'zoom'
+      transitionSpeed: 'fast'
     });
   </script>
 </body>
 </html>
+
 
 
 
