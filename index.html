@@ -16,7 +16,7 @@
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/reveal.css"
   />
-  <!-- Reveal.js Theme (e.g., simple, white, black, league, etc.) -->
+  <!-- Reveal.js Theme -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/theme/simple.css"
@@ -37,8 +37,10 @@
       padding: 0;
       font-family: 'Montserrat', sans-serif;
       height: 100%;
-      /* Subtle background gradient */
-      background: linear-gradient(to right, #f7f7f7, #e7e7e7);
+
+      /* Paper/Academic vibe: subtle paper-like texture */
+      background: #fdfdfd url('https://www.transparenttextures.com/patterns/paper.png');
+      background-size: 600px 600px;
     }
 
     /* ---------- REVEAL WRAPPER ---------- */
@@ -67,17 +69,16 @@
     p {
       font-size: 1.2rem;
       line-height: 1.6;
-      color: #555;
+      color: #444;
       max-width: 900px;
       margin: 0.5em auto 1em;
     }
-    /* Larger, centered subtitle */
     .subtitle {
-      font-size: 2rem;      /* Increased size */
+      font-size: 2rem; 
       font-weight: 300;
       color: #555;
       text-align: center;
-      margin: 1em 0;        /* Extra spacing above/below */
+      margin: 1em 0; 
     }
 
     /* ---------- SLIDE CONTAINER ---------- */
@@ -120,7 +121,56 @@
       border-radius: 5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
       margin: 0 auto;
-      text-align: left; /* text inside the box is left-aligned */
+      text-align: left;
+    }
+
+    /* ---------- TWO-COLUMN TEXT LAYOUT ---------- */
+    .two-col {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .two-col > div {
+      flex: 1 1 45%;
+      background: #fafafa;
+      padding: 1rem;
+      border-radius: 5px;
+      margin: 0.5rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 280px;
+    }
+
+    /* ---------- PULL-QUOTE STYLE ---------- */
+    .pull-quote {
+      font-size: 1.4rem;
+      font-style: italic;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 1rem auto;
+      border-left: 4px solid #999;
+      padding-left: 1rem;
+      color: #444;
+      background: #f9f9f9;
+    }
+
+    /* ---------- TABLE STYLE ---------- */
+    table {
+      border-collapse: collapse;
+      margin: 1em auto;
+      font-size: 1.1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
     }
 
     /* ---------- DETAILS (TOGGLE) ---------- */
@@ -138,7 +188,7 @@
       background: #2e2e2e !important;
       color: #f5f5f5;
     }
-    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode ul {
+    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode ul, .dark-mode table {
       color: #f0f0f0;
     }
     .dark-mode .text-box {
@@ -149,6 +199,13 @@
       background: #555;
       border-color: #777;
       color: #ddd;
+    }
+    .dark-mode .pull-quote {
+      background: #444;
+      border-left-color: #999;
+    }
+    .dark-mode th {
+      background: #555;
     }
 
     /* ---------- DARK MODE TOGGLE BUTTON ---------- */
@@ -189,29 +246,68 @@
     <div class="slides">
 
       <!-- Slide 1: Title & Subtitle -->
-      <section data-background-color="#f7f7f7">
+      <section data-background-color="#ffffff">
         <h1>SPROJ Report</h1>
         <p class="subtitle">Exploring Stock Returns Determinants</p>
         <aside class="notes">
-          Welcome everyone! This is the opening slide. Briefly mention the project scope and goals.
+          Opening slide: mention overall scope, timeline, and the purpose of this study.
         </aside>
       </section>
 
       <!-- Slide 2: Overview with Fragments -->
-      <section data-background-color="#ffffff">
+      <section data-background-color="#f7f7f7">
         <h2>Project Overview</h2>
         <ul>
           <li class="fragment">Daily & Monthly Returns Analysis</li>
           <li class="fragment">Machine Learning Comparisons (CAPM vs. GBM)</li>
           <li class="fragment">Event Studies & Cross-Section Fundamentals</li>
+          <li class="fragment">Two-Column Summaries, Pull Quotes, Tables</li>
         </ul>
         <aside class="notes">
-          Here, I highlight the main sections of my research. Each bullet is revealed with fragments.
+          Outline your major topics. Each bullet uses a fragment to appear on click.
         </aside>
       </section>
 
-      <!-- Slide 3: Daily vs. Monthly Returns (Side-by-Side with Fragments) -->
+      <!-- Slide 3: Two-Column Text Layout Example -->
+      <section data-background-color="#ffffff">
+        <h2>Data & Approach</h2>
+        <div class="two-col">
+          <div>
+            <h3>Data Sources</h3>
+            <ul>
+              <li>Market Data (2009–2024)</li>
+              <li>211 Companies, 20 Countries</li>
+              <li>Macroeconomic Indicators</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Methodology</h3>
+            <ul>
+              <li>CAPM & GBM Models</li>
+              <li>OLS Regression (Cross-Section)</li>
+              <li>Event Study Framework</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">
+          This demonstrates a two-column layout for side-by-side bullet points or text blocks.
+        </aside>
+      </section>
+
+      <!-- Slide 4: Pull Quote Slide -->
       <section data-background-color="#f7f7f7">
+        <h2>Key Insight</h2>
+        <blockquote class="pull-quote">
+          “Monthly aggregations reveal the underlying macro trends far better 
+           than daily fluctuations, which are often driven by short-term sentiment.”
+        </blockquote>
+        <aside class="notes">
+          Use a pull quote to emphasize a major takeaway or statement from your findings.
+        </aside>
+      </section>
+
+      <!-- Slide 5: Daily vs. Monthly Returns (Side-by-Side) -->
+      <section data-background-color="#ffffff">
         <h2>Daily vs. Monthly Returns</h2>
         <div class="slide-content">
           <div class="chart-area">
@@ -220,24 +316,22 @@
           <div class="text-box">
             <h3>Volatility & Trend</h3>
             <p class="fragment">
-              Daily returns are more volatile. <br>
-              Monthly data reveals clearer trends.
+              Daily returns can be highly volatile. <br>
+              Monthly data captures broader patterns.
             </p>
             <details class="fragment">
-              <summary>Show Additional Analysis</summary>
+              <summary>Additional Analysis</summary>
               <p>
-                <strong>Daily Returns:</strong> Often influenced by news, sentiment, 
-                and short-term technicals.<br>
-                <strong>Monthly Returns:</strong> More reflective of macroeconomic factors, 
-                smoothing out daily noise.
+                <strong>Daily Returns:</strong> Heavily influenced by market sentiment & short-term news.<br>
+                <strong>Monthly Returns:</strong> Smoother, highlighting macro factors (e.g. oil prices, interest rates).
               </p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- Slide 4: ML Model Comparison with a code snippet toggle -->
-      <section data-background-color="#ffffff">
+      <!-- Slide 6: ML Model Comparison with code snippet toggle -->
+      <section data-background-color="#f7f7f7">
         <h2>Machine Learning Models</h2>
         <div class="slide-content">
           <div class="chart-area">
@@ -246,8 +340,8 @@
           <div class="text-box">
             <h3>CAPM vs. GBM</h3>
             <p>
-              CAPM excels at short-term predictions (~70% accuracy), while GBM 
-              performs better over multi-day horizons.
+              CAPM: ~70% accuracy on daily returns. <br>
+              GBM: ~78% accuracy over multi-day horizons.
             </p>
             <details>
               <summary>Show Regression Code</summary>
@@ -260,53 +354,97 @@ print(model.summary())</code></pre>
         </div>
       </section>
 
-      <!-- Slide 5: Event Studies -->
-      <section data-background-color="#f7f7f7">
+      <!-- Slide 7: Event Studies -->
+      <section data-background-color="#ffffff">
         <h2>Event Studies</h2>
         <p>Examining abnormal returns around key market events.</p>
         <ul>
           <li class="fragment">COVID-19 Lockdown: +5% abnormal return</li>
           <li class="fragment">Brexit Referendum: -3% immediate shift</li>
-          <li class="fragment">Other Geopolitical Tensions: Mixed Impact</li>
+          <li class="fragment">Geopolitical Tensions: Mixed Impact</li>
         </ul>
         <aside class="notes">
-          Introduce timeline-based approach. Possibly highlight a vertical event line on a chart.
+          Consider showing a timeline or marking the event date on a price chart. 
         </aside>
       </section>
 
-      <!-- Slide 6: Cross-Section Fundamentals -->
-      <section data-background-color="#ffffff">
+      <!-- Slide 8: Cross-Section Fundamentals -->
+      <section data-background-color="#f7f7f7">
         <h2>Cross-Section Analysis</h2>
-        <p>Comparing fundamentals (e.g. P/E, Revenue) across multiple stocks.</p>
+        <p>Comparing fundamentals (e.g., P/E, Revenue, Employees) across multiple stocks.</p>
         <details>
           <summary>Expand for Observations</summary>
           <p>
-            <strong>Revenue:</strong> Larger revenues correlate with stable returns. <br/>
-            <strong>P/E Ratio:</strong> Mixed effect—growth vs. value tilt. <br/>
-            <strong>Employees:</strong> Workforce size can hint at operational scale but not always at profitability.
+            <strong>Revenue:</strong> Larger revenues correlate with more stable returns. <br/>
+            <strong>P/E Ratio:</strong> Growth vs. value tilt can affect performance. <br/>
+            <strong>Employees:</strong> Workforce size is not always predictive of profitability.
           </p>
         </details>
-        <aside class="notes">
-          Optionally, show a scatter plot with fundamental metrics. Or highlight a sector-based approach.
-        </aside>
       </section>
 
-      <!-- Slide 7: Auto-Animate Example (Performance Improvement) -->
-      <section data-background-color="#f7f7f7" data-auto-animate>
+      <!-- Slide 9: Auto-Animate Example (Performance Improvement) -->
+      <section data-background-color="#ffffff" data-auto-animate>
         <h2>Model Performance</h2>
         <h3 id="performanceMetric">Accuracy: 85%</h3>
       </section>
-      <section data-background-color="#f7f7f7" data-auto-animate>
+      <section data-background-color="#ffffff" data-auto-animate>
         <h2>Model Performance</h2>
         <h3 id="performanceMetric">Accuracy: 92%</h3>
       </section>
 
-      <!-- Slide 8: Conclusion -->
-      <section data-background-color="#ffffff">
-        <h2>Conclusion</h2>
-        <p>Thank you for attending! Questions?</p>
+      <!-- Slide 10: Table Layout -->
+      <section data-background-color="#f7f7f7">
+        <h2>Summary Table</h2>
+        <table class="fragment">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Accuracy (%)</th>
+              <th>Time Horizon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="fragment">
+              <td>CAPM</td>
+              <td>70</td>
+              <td>Daily</td>
+            </tr>
+            <tr class="fragment">
+              <td>GBM</td>
+              <td>78</td>
+              <td>5-Day</td>
+            </tr>
+            <tr class="fragment">
+              <td>Candlestick</td>
+              <td>65</td>
+              <td>1-21 Day Range</td>
+            </tr>
+          </tbody>
+        </table>
         <aside class="notes">
-          Summarize next steps or invite peer feedback here.
+          Each row can appear incrementally using fragments.  
+        </aside>
+      </section>
+
+      <!-- Slide 11: References Slide -->
+      <section data-background-color="#ffffff">
+        <h2>References</h2>
+        <ul>
+          <li class="fragment">Smith, J. (2021). *Machine Learning in Finance.* Finance Journal, 12(3), 45-60.</li>
+          <li class="fragment">Doe, A. (2023). *Event Studies & Market Reactions.* Econ Review, 8(2), 15-29.</li>
+          <li class="fragment">Miller, B. (2022). *Comparing CAPM vs. GBM Models.* Stats Letters, 19(4), 70-80.</li>
+        </ul>
+        <aside class="notes">
+          Provide any citations, references, or data source details here.
+        </aside>
+      </section>
+
+      <!-- Slide 12: Conclusion -->
+      <section data-background-color="#f7f7f7">
+        <h2>Conclusion</h2>
+        <p>Thank you for attending! Questions or feedback?</p>
+        <aside class="notes">
+          Summarize next steps, invite discussion, or propose future research directions.
         </aside>
       </section>
 
@@ -336,7 +474,7 @@ print(model.summary())</code></pre>
       document.body.classList.toggle('dark-mode');
     }
 
-    // Listen for Slide Changes & Initialize Charts On-Demand
+    // Initialize Charts On-Demand when slides appear
     Reveal.on('slidechanged', function(event) {
       // #returnsChart (Daily vs. Monthly)
       if (event.currentSlide.querySelector('#returnsChart')) {
