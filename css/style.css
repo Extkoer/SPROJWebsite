@@ -1,4 +1,3 @@
-/* Global Styles */
 body, html {
   margin: 0;
   padding: 0;
@@ -8,7 +7,6 @@ body, html {
   overflow: hidden;
 }
 
-/* FullPage.js Sections */
 .section {
   display: flex;
   align-items: center;
@@ -16,13 +14,11 @@ body, html {
   text-align: center;
 }
 
-/* Reveal.js container takes full height */
 .reveal {
   height: 100%;
   width: 100%;
 }
 
-/* Typography */
 h1 {
   font-size: 3.5rem;
   margin: 0.5em 0;
@@ -51,12 +47,10 @@ p {
   color: #777;
 }
 
-/* Smooth transitions for slide changes */
 .reveal .slides section {
   transition: opacity 0.5s ease-in-out;
 }
 
-/* Minimalistic controls styling */
 .reveal .controls {
   color: #333;
 }
