@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SPROJ Report - Landscape Reveal.js</title>
+  <title>SPROJ Report - Interactive Reveal.js</title>
 
   <!-- Google Font -->
   <link
@@ -16,7 +16,7 @@
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/reveal.css"
   />
-  <!-- Reveal.js Theme (try 'white', 'black', 'simple', etc.) -->
+  <!-- Reveal.js Theme -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/theme/simple.css"
@@ -37,18 +37,17 @@
       padding: 0;
       font-family: 'Montserrat', sans-serif;
       height: 100%;
-      /* A subtle background gradient */
+      /* Subtle background gradient */
       background: linear-gradient(to right, #f7f7f7, #e7e7e7);
     }
 
     /* ---------- REVEAL WRAPPER ---------- */
     .reveal {
-      /* Subtle drop shadow for the slide container */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     /* ---------- HEADINGS & TEXT ---------- */
-    h1, h2, h3, p {
+    h1, h2, h3, p, ul {
       margin-bottom: 0.5em;
       text-align: center;
     }
@@ -86,17 +85,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh; /* fill entire screen vertically */
+      min-height: 100vh;
       padding: 2rem;
     }
 
     /* ---------- SIDE-BY-SIDE LAYOUT FOR CHART + TEXT ---------- */
     .slide-content {
       display: flex;
-      flex-direction: row; /* side-by-side on wide screens */
+      flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      flex-wrap: wrap; /* allows wrap on smaller devices */
+      flex-wrap: wrap;
       max-width: 1200px;
       margin: 0 auto;
       gap: 2rem;
@@ -104,7 +103,7 @@
     .chart-area {
       width: 600px;
       max-width: 45%;
-      height: 350px; /* Adjust as needed */
+      height: 350px;
       background: #eee;
       display: flex;
       align-items: center;
@@ -119,8 +118,8 @@
       padding: 1.5rem;
       border-radius: 5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      text-align: left; /* text inside can be left-aligned if desired */
       margin: 0 auto;
+      text-align: left; /* left-aligned text inside the box */
     }
 
     /* ---------- DETAILS (TOGGLE) ---------- */
@@ -135,10 +134,10 @@
 
     /* ---------- DARK MODE STYLES ---------- */
     .dark-mode {
-      background: #2e2e2e !important; /* override gradient */
+      background: #2e2e2e !important;
       color: #f5f5f5;
     }
-    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p {
+    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode ul {
       color: #f0f0f0;
     }
     .dark-mode .text-box {
@@ -168,6 +167,16 @@
     #darkModeToggle:hover {
       opacity: 0.8;
     }
+
+    /* ---------- CODE BLOCKS ---------- */
+    pre code {
+      display: block;
+      padding: 1rem;
+      background: #f0f0f0;
+      border-radius: 5px;
+      color: #333;
+    }
+
   </style>
 </head>
 <body>
@@ -176,16 +185,18 @@
 
   <!-- Reveal.js Container -->
   <div class="reveal">
-    <!-- Slides Wrapper -->
     <div class="slides">
 
-      <!-- Slide 1: Title -->
+      <!-- Slide 1: Title & Subtitle -->
       <section data-background-color="#f7f7f7">
         <h1>SPROJ Report</h1>
         <p class="subtitle">Exploring Stock Returns Determinants</p>
+        <aside class="notes">
+          Welcome everyone! This is the opening slide. Briefly mention the project scope and goals.
+        </aside>
       </section>
 
-      <!-- Slide 2: Overview -->
+      <!-- Slide 2: Overview with Fragments -->
       <section data-background-color="#ffffff">
         <h2>Project Overview</h2>
         <ul>
@@ -193,35 +204,40 @@
           <li class="fragment">Machine Learning Comparisons (CAPM vs. GBM)</li>
           <li class="fragment">Event Studies & Cross-Section Fundamentals</li>
         </ul>
+        <aside class="notes">
+          Here, I highlight the main sections of my research. Each bullet is revealed with fragments.
+        </aside>
       </section>
 
-      <!-- Slide 3: Daily Returns Example (Side-by-Side) -->
+      <!-- Slide 3: Daily vs. Monthly Returns (Side-by-Side with Fragments) -->
       <section data-background-color="#f7f7f7">
-        <h2>Daily Stock Returns</h2>
+        <h2>Daily vs. Monthly Returns</h2>
         <div class="slide-content">
           <div class="chart-area">
-            <canvas id="dailyChart"></canvas>
+            <canvas id="returnsChart"></canvas>
           </div>
           <div class="text-box">
-            <h3>Technical Indicators</h3>
-            <p>
-              Daily returns can be volatile. The chart to the left showcases how
-              RSI, moving averages, and other indicators behave over the week.
+            <h3>Volatility & Trend</h3>
+            <p class="fragment">
+              Daily returns are more volatile. <br>
+              Monthly data reveals clearer trends.
             </p>
-            <details>
-              <summary>More Insights</summary>
+            <details class="fragment">
+              <summary>Show Additional Analysis</summary>
               <p>
-                RSI above 70 indicates overbought territory, below 30 is oversold.
-                Candlestick patterns can also add context to daily fluctuations.
+                <strong>Daily Returns:</strong> Often influenced by news, sentiment, 
+                and short-term technicals.<br>
+                <strong>Monthly Returns:</strong> More reflective of macroeconomic factors, 
+                smoothing out daily noise.
               </p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- Slide 4: ML Comparison (Side-by-Side) -->
+      <!-- Slide 4: ML Model Comparison with a code snippet toggle -->
       <section data-background-color="#ffffff">
-        <h2>ML Model Comparison</h2>
+        <h2>Machine Learning Models</h2>
         <div class="slide-content">
           <div class="chart-area">
             <canvas id="mlChart"></canvas>
@@ -229,46 +245,49 @@
           <div class="text-box">
             <h3>CAPM vs. GBM</h3>
             <p>
-              Explore how CAPM and GBM differ in accuracy. CAPM excels in short-term
-              horizons, while GBM may capture longer trends more effectively.
+              CAPM excels at short-term predictions (~70% accuracy), while GBM 
+              performs better over multi-day horizons.
             </p>
             <details>
-              <summary>Analysis</summary>
-              <p>
-                CAPM: ~70% accuracy for daily returns <br/>
-                GBM: ~78% for 5-day or 21-day forward returns
-              </p>
+              <summary>Show Regression Code</summary>
+              <pre><code># Python regression snippet
+import statsmodels.api as sm
+model = sm.OLS(y, X).fit()
+print(model.summary())</code></pre>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- Slide 5: Monthly Returns Example (Side-by-Side) -->
+      <!-- Slide 5: Event Studies -->
       <section data-background-color="#f7f7f7">
-        <h2>Monthly Stock Returns</h2>
-        <div class="slide-content">
-          <div class="chart-area">
-            <canvas id="monthlyChart"></canvas>
-          </div>
-          <div class="text-box">
-            <h3>Macroeconomic Indicators</h3>
-            <p>
-              Monthly data smooths out short-term noise and reveals how factors like
-              crude oil or gold correlate with returns.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 6: Event Studies -->
-      <section data-background-color="#ffffff">
         <h2>Event Studies</h2>
-        <p>Abnormal returns triggered by specific events.</p>
+        <p>Examining abnormal returns around key market events.</p>
         <ul>
           <li class="fragment">COVID-19 Lockdown: +5% abnormal return</li>
-          <li class="fragment">Brexit Referendum: -3% immediate adjustment</li>
-          <li class="fragment">Other Geopolitical Shifts: Variable Impact</li>
+          <li class="fragment">Brexit Referendum: -3% immediate shift</li>
+          <li class="fragment">Other Geopolitical Tensions: Mixed Impact</li>
         </ul>
+        <aside class="notes">
+          Introduce timeline-based approach. Possibly highlight a vertical event line on a chart.
+        </aside>
+      </section>
+
+      <!-- Slide 6: Cross-Section Fundamentals -->
+      <section data-background-color="#ffffff">
+        <h2>Cross-Section Analysis</h2>
+        <p>Comparing fundamentals (e.g. P/E, Revenue) across multiple stocks.</p>
+        <details>
+          <summary>Expand for Observations</summary>
+          <p>
+            <strong>Revenue:</strong> Larger revenues correlate with stable returns. <br/>
+            <strong>P/E Ratio:</strong> Mixed effect—growth vs. value tilt. <br/>
+            <strong>Employees:</strong> Workforce size can hint at operational scale but not always at profitability.
+          </p>
+        </details>
+        <aside class="notes">
+          Optionally, show a scatter plot with fundamental metrics. Or highlight a sector-based approach.
+        </aside>
       </section>
 
       <!-- Slide 7: Auto-Animate Example (Performance Improvement) -->
@@ -284,18 +303,21 @@
       <!-- Slide 8: Conclusion -->
       <section data-background-color="#ffffff">
         <h2>Conclusion</h2>
-        <p>Thank you for attending. We look forward to your questions.</p>
+        <p>Thank you for attending! Questions?</p>
+        <aside class="notes">
+          Summarize next steps or invite peer feedback here.
+        </aside>
       </section>
 
     </div>
   </div>
 
-  <!-- Reveal.js Core Script -->
+  <!-- Reveal.js Script -->
   <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
 
   <!-- Custom JavaScript -->
   <script>
-    // Initialize Reveal.js with landscape 16:9 settings
+    // Initialize Reveal.js with a 16:9 layout
     Reveal.initialize({
       width: 1920,
       height: 1080,
@@ -306,7 +328,7 @@
       center: true,
       transition: 'slide',
       transitionSpeed: 'fast',
-      autoSlide: 0
+      // autoSlide: 10000, // Uncomment for auto-progression every 10s
     });
 
     // Dark Mode Toggle
@@ -314,22 +336,30 @@
       document.body.classList.toggle('dark-mode');
     }
 
-    // Chart Initialization on Slide Change
+    // Listen for Slide Changes & Initialize Charts On-Demand
     Reveal.on('slidechanged', function(event) {
-      // Slide with #dailyChart
-      if (event.currentSlide.querySelector('#dailyChart')) {
+      // Daily vs. Monthly Chart (#returnsChart)
+      if (event.currentSlide.querySelector('#returnsChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          const ctx = document.getElementById('dailyChart').getContext('2d');
+          const ctx = document.getElementById('returnsChart').getContext('2d');
           new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['Mon','Tue','Wed','Thu','Fri'],
-              datasets: [{
-                label: 'Daily Returns (%)',
-                data: [1.2, -0.5, 3.1, 2.3, -1.2],
-                borderColor: 'blue',
-                fill: false
-              }]
+              labels: ['Jan','Feb','Mar','Apr','May'],
+              datasets: [
+                {
+                  label: 'Daily Returns (%)',
+                  data: [1.2, -0.5, 3.1, 2.3, -1.2],
+                  borderColor: 'blue',
+                  fill: false
+                },
+                {
+                  label: 'Monthly Returns (%)',
+                  data: [2.1, 2.4, 1.9, 3.0, 2.5],
+                  borderColor: 'orange',
+                  fill: false
+                }
+              ]
             },
             options: { responsive: true }
           });
@@ -337,11 +367,11 @@
         }
       }
 
-      // Slide with #mlChart
+      // ML Comparison Chart (#mlChart)
       if (event.currentSlide.querySelector('#mlChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          const ctx = document.getElementById('mlChart').getContext('2d');
-          new Chart(ctx, {
+          const ctxML = document.getElementById('mlChart').getContext('2d');
+          new Chart(ctxML, {
             type: 'bar',
             data: {
               labels: ['CAPM', 'GBM', 'Candlestick'],
@@ -355,31 +385,8 @@
             },
             options: {
               responsive: true,
-              scales: {
-                y: { beginAtZero: true }
-              }
+              scales: { y: { beginAtZero: true } }
             }
-          });
-          event.currentSlide.dataset.chartInitialized = true;
-        }
-      }
-
-      // Slide with #monthlyChart
-      if (event.currentSlide.querySelector('#monthlyChart')) {
-        if (!event.currentSlide.dataset.chartInitialized) {
-          const ctx = document.getElementById('monthlyChart').getContext('2d');
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: ['Jan','Feb','Mar','Apr','May'],
-              datasets: [{
-                label: 'Monthly Returns (%)',
-                data: [2.5, 3.2, 1.8, 4.0, 3.5],
-                borderColor: 'orange',
-                fill: false
-              }]
-            },
-            options: { responsive: true }
           });
           event.currentSlide.dataset.chartInitialized = true;
         }
@@ -388,18 +395,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
