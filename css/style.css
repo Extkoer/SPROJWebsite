@@ -1,0 +1,62 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background: #f7f7f7;
+  overflow: hidden;
+}
+
+/* FullPage.js Sections */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Reveal.js container takes full height */
+.reveal {
+  height: 100%;
+  width: 100%;
+}
+
+/* Typography */
+h1 {
+  font-size: 3.5rem;
+  margin: 0.5em 0;
+  font-weight: 700;
+  color: #333;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin: 0.5em 0;
+  font-weight: 400;
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 0.5em;
+  color: #777;
+}
+
+/* Smooth transitions for slide changes */
+.reveal .slides section {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Minimalistic controls styling */
+.reveal .controls {
+  color: #333;
+}

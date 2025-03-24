@@ -2,39 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPROJ Report Presentation</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
   <!-- Reveal.js Styles -->
   <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css">
   <!-- FullPage.js Styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
-  <style>
-    /* Optional: Adjust section styles if needed */
-    .section {
-      text-align: center;
-      overflow: hidden;
-    }
-    /* Reveal container full height */
-    .reveal {
-      height: 100%;
-    }
-  </style>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- FullPage.js container -->
   <div id="fullpage">
     <!-- Section 1: Overview -->
     <div class="section">
       <div class="reveal">
         <div class="slides">
-          <section>
-            <h1>Stock Returns Determinants SPROJ</h1>
-            <p>Overview of datasets and objectives.</p>
+          <section data-background-color="#f7f7f7">
+            <h1>SPROJ Report</h1>
+            <p class="subtitle">Exploring Stock Returns Determinants</p>
           </section>
-          <section>
-            <h2>Project Objectives</h2>
-            <p>Understand the drivers of stock returns using various technical, macroeconomic, and fundamental indicators.</p>
+          <section data-background-color="#f7f7f7">
+            <h2>Project Overview</h2>
+            <p>A deep dive into datasets and analysis methods that unveil stock market behavior.</p>
           </section>
         </div>
       </div>
@@ -43,13 +35,13 @@
     <div class="section">
       <div class="reveal">
         <div class="slides">
-          <section>
+          <section data-background-color="#ffffff">
             <h1>Daily Stock Returns</h1>
-            <p>Analysis based on technical indicators and machine learning models.</p>
+            <p>Technical indicators and machine learning models in action.</p>
           </section>
-          <section>
+          <section data-background-color="#ffffff">
             <h2>ML Model Comparison</h2>
-            <p>CAPM, GBM, Candlestick Patterns, and Combined Technical Indicators.</p>
+            <p>Exploring CAPM, GBM, Candlestick Patterns, and Combined Indicators.</p>
           </section>
         </div>
       </div>
@@ -58,13 +50,13 @@
     <div class="section">
       <div class="reveal">
         <div class="slides">
-          <section>
+          <section data-background-color="#f7f7f7">
             <h1>Monthly Stock Returns</h1>
-            <p>Evaluating macroeconomic indicators using pooled OLS crossection analysis.</p>
+            <p>Macroeconomic indicators via pooled OLS cross-section analysis.</p>
           </section>
-          <section>
+          <section data-background-color="#f7f7f7">
             <h2>Key Variables</h2>
-            <p>Crude Oil, Natural Gas, and Gold.</p>
+            <p>Analyzing Crude Oil, Natural Gas, and Gold.</p>
           </section>
         </div>
       </div>
@@ -73,45 +65,28 @@
     <div class="section">
       <div class="reveal">
         <div class="slides">
-          <section>
+          <section data-background-color="#ffffff">
             <h1>Cross-Section Analysis</h1>
-            <p>Fundamental indicators such as Revenue, Full-Time Employees, and P/E Ratio.</p>
+            <p>Insights from fundamental indicators: Revenue, Employees, and P/E Ratio.</p>
           </section>
-          <section>
+          <section data-background-color="#ffffff">
             <h1>Event Studies</h1>
-            <p>Investigation of key events and their impact on stock market performance.</p>
+            <p>Key events and their impact on market performance.</p>
           </section>
         </div>
       </div>
     </div>
   </div>
-
+  
   <!-- FullPage.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
   <!-- Reveal.js Script -->
   <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
-  <script>
-    // Initialize FullPage.js
-    new fullpage('#fullpage', {
-      navigation: true,
-      navigationPosition: 'right',
-      scrollingSpeed: 700,
-      // Other options can be added as needed
-    });
-
-    // Initialize Reveal.js for each Reveal container
-    Reveal.initialize({
-      controls: true,
-      progress: true,
-      slideNumber: true,
-      history: false,
-      center: true,
-      transition: 'slide', // Try also 'fade' or 'convex'
-      // Additional Reveal.js options can be added here
-    });
-  </script>
+  <!-- Custom Script -->
+  <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
