@@ -1,140 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SPROJ: CO2 Emissions & Stock Market</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPROJ Report Presentation</title>
+  <!-- Reveal.js Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css">
+  <!-- FullPage.js Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+  <style>
+    /* Optional: Adjust section styles if needed */
+    .section {
+      text-align: center;
+      overflow: hidden;
+    }
+    /* Reveal container full height */
+    .reveal {
+      height: 100%;
+    }
+  </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800 overflow-hidden relative">
-
-  <!-- Sidebar (Full-page Overlay) -->
-  <div
-    id="sidebar"
-    class="fixed inset-0 bg-gray-900 text-white scale-0 transform opacity-0 transition-transform duration-500 z-50 hidden"
-  >
-    <div class="flex flex-col items-center justify-center h-full space-y-12">
-      <button
-        class="text-6xl font-extrabold hover:opacity-80 focus:outline-none"
-        onclick="goHome()"
-      >
-        Home
-      </button>
-      <button
-        class="text-6xl font-extrabold hover:opacity-80 focus:outline-none"
-        onclick="goToSlide('co2', 1)"
-      >
-        CO2 Emissions
-      </button>
-      <button
-        class="text-6xl font-extrabold hover:opacity-80 focus:outline-none"
-        onclick="goToSlide('stock', 1)"
-      >
-        Stock Market
-      </button>
+<body>
+  <!-- FullPage.js container -->
+  <div id="fullpage">
+    <!-- Section 1: Overview -->
+    <div class="section">
+      <div class="reveal">
+        <div class="slides">
+          <section>
+            <h1>Stock Returns Determinants SPROJ</h1>
+            <p>Overview of datasets and objectives.</p>
+          </section>
+          <section>
+            <h2>Project Objectives</h2>
+            <p>Understand the drivers of stock returns using various technical, macroeconomic, and fundamental indicators.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Section 2: Daily Stock Returns -->
+    <div class="section">
+      <div class="reveal">
+        <div class="slides">
+          <section>
+            <h1>Daily Stock Returns</h1>
+            <p>Analysis based on technical indicators and machine learning models.</p>
+          </section>
+          <section>
+            <h2>ML Model Comparison</h2>
+            <p>CAPM, GBM, Candlestick Patterns, and Combined Technical Indicators.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Section 3: Monthly Stock Returns -->
+    <div class="section">
+      <div class="reveal">
+        <div class="slides">
+          <section>
+            <h1>Monthly Stock Returns</h1>
+            <p>Evaluating macroeconomic indicators using pooled OLS crossection analysis.</p>
+          </section>
+          <section>
+            <h2>Key Variables</h2>
+            <p>Crude Oil, Natural Gas, and Gold.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Section 4: Cross-Section & Event Studies -->
+    <div class="section">
+      <div class="reveal">
+        <div class="slides">
+          <section>
+            <h1>Cross-Section Analysis</h1>
+            <p>Fundamental indicators such as Revenue, Full-Time Employees, and P/E Ratio.</p>
+          </section>
+          <section>
+            <h1>Event Studies</h1>
+            <p>Investigation of key events and their impact on stock market performance.</p>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Sidebar Toggle Button -->
-  <button
-    id="hamburgerBtn"
-    class="absolute top-6 left-6 z-50 p-4 bg-gray-800 text-white shadow-md rounded hidden"
-    onclick="toggleSidebar()"
-  >
-    <div class="w-6 h-0.5 bg-white mb-1"></div>
-    <div class="w-6 h-0.5 bg-white mb-1"></div>
-    <div class="w-6 h-0.5 bg-white"></div>
-  </button>
+  <!-- FullPage.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+  <!-- Reveal.js Script -->
+  <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+  <script>
+    // Initialize FullPage.js
+    new fullpage('#fullpage', {
+      navigation: true,
+      navigationPosition: 'right',
+      scrollingSpeed: 700,
+      // Other options can be added as needed
+    });
 
-  <!-- Hero Section -->
-  <header id="hero" class="h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
-    <!-- CO2 Emissions Side -->
-    <div
-      id="hero-co2"
-      class="relative group cursor-pointer hero-button"
-      onclick="transitionToSection('co2')"
-    >
-      <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop playsinline disablePictureInPicture>
-        <source src="assets/co2emissions.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 flex items-center justify-center text-white text-center z-10">
-        <h1 class="text-5xl font-extrabold tracking-wider">CO2 Emissions</h1>
-      </div>
-    </div>
-
-    <!-- Stock Market Side -->
-    <div
-      id="hero-stock"
-      class="relative group cursor-pointer hero-button"
-      onclick="transitionToSection('stock')"
-    >
-      <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop playsinline disablePictureInPicture>
-        <source src="assets/stockmarket.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 flex items-center justify-center text-white text-center z-10">
-        <h1 class="text-5xl font-extrabold tracking-wider">Stock Market</h1>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content (Slides) -->
-  <main id="main-content" class="hidden">
-    <!-- CO2 Slides -->
-    <section id="co2-slides" class="snap-y snap-mandatory h-screen overflow-y-scroll hidden">
-      <div
-        class="snap-start w-full h-screen flex items-center justify-center p-8"
-        style="background-image: url('assets/co2-slide1.jpg'); background-size: cover;"
-      >
-        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
-          <h1 class="text-5xl font-extrabold mb-4">Global CO2 Trends</h1>
-          <p class="text-lg">Explore the worldwide evolution of CO2 emissions over the years.</p>
-        </div>
-      </div>
-      <div
-        class="snap-start w-full h-screen flex items-center justify-center p-8"
-        style="background-image: url('assets/co2-slide2.jpg'); background-size: cover;"
-      >
-        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
-          <h1 class="text-5xl font-extrabold mb-4">Major Emission Sources</h1>
-          <p class="text-lg">Learn about the top contributors to CO2 emissions globally.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stock Slides -->
-    <section id="stock-slides" class="snap-y snap-mandatory h-screen overflow-y-scroll hidden">
-      <div
-        class="snap-start w-full h-screen flex items-center justify-center p-8"
-        style="background-image: url('assets/stock-slide1.jpg'); background-size: cover;"
-      >
-        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
-          <h1 class="text-5xl font-extrabold mb-4">Market Trends</h1>
-          <p class="text-lg">Dive into how the stock market reacts to global events and policies.</p>
-        </div>
-      </div>
-      <div
-        class="snap-start w-full h-screen flex items-center justify-center p-8"
-        style="background-image: url('assets/stock-slide2.jpg'); background-size: cover;"
-      >
-        <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg text-white max-w-xl">
-          <h1 class="text-5xl font-extrabold mb-4">Carbon Policy Impact</h1>
-          <p class="text-lg">Analyze how carbon regulations shape investment strategies worldwide.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="js/scripts.js"></script>
+    // Initialize Reveal.js for each Reveal container
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      history: false,
+      center: true,
+      transition: 'slide', // Try also 'fade' or 'convex'
+      // Additional Reveal.js options can be added here
+    });
+  </script>
 </body>
 </html>
+
 
 
 
