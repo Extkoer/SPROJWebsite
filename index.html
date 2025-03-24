@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Enhanced SPROJ Presentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPROJ Report - Interactive Reveal.js</title>
 
   <!-- Google Font -->
   <link
@@ -16,10 +16,10 @@
     rel="stylesheet"
     href="https://unpkg.com/reveal.js/dist/reveal.css"
   />
-  <!-- Reveal.js Theme (white, black, league, beige, etc.) -->
+  <!-- Reveal.js Theme (e.g., simple, white, black, league, etc.) -->
   <link
     rel="stylesheet"
-    href="https://unpkg.com/reveal.js/dist/theme/white.css"
+    href="https://unpkg.com/reveal.js/dist/theme/simple.css"
     id="theme"
   />
 
@@ -28,32 +28,42 @@
 
   <!-- Custom CSS -->
   <style>
-    /* Global Reset & Body */
-    * { box-sizing: border-box; }
+    /* ---------- GLOBAL RESET & BODY STYLES ---------- */
+    * {
+      box-sizing: border-box;
+    }
     html, body {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       font-family: 'Montserrat', sans-serif;
-      background: #f7f7f7; /* subtle background */
       height: 100%;
+      /* Subtle background gradient */
+      background: linear-gradient(to right, #f7f7f7, #e7e7e7);
     }
 
-    /* Reveal Container */
+    /* ---------- REVEAL WRAPPER ---------- */
     .reveal {
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    /* Headings & Text */
-    h1, h2, h3, p {
-      text-align: center;
+    /* ---------- HEADINGS & TEXT ---------- */
+    h1, h2, h3, p, ul {
       margin-bottom: 0.5em;
+      text-align: center;
     }
     h1 {
       font-size: 3rem;
       font-weight: 700;
       margin-top: 0.5em;
     }
-    h2 { font-size: 2rem; font-weight: 400; }
-    h3 { font-size: 1.5rem; font-weight: 400; }
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
     p {
       font-size: 1.2rem;
       line-height: 1.6;
@@ -61,15 +71,16 @@
       max-width: 900px;
       margin: 0.5em auto 1em;
     }
+    /* Larger, centered subtitle */
     .subtitle {
-      font-size: 1.5rem;
-      margin-top: 0.5em;
-      color: #777;
+      font-size: 2rem;      /* Increased size */
       font-weight: 300;
-      margin-bottom: 1em;
+      color: #555;
+      text-align: center;
+      margin: 1em 0;        /* Extra spacing above/below */
     }
 
-    /* Slide Container */
+    /* ---------- SLIDE CONTAINER ---------- */
     section {
       display: flex;
       flex-direction: column;
@@ -79,11 +90,11 @@
       padding: 2rem;
     }
 
-    /* Slide Content - side-by-side layout */
+    /* ---------- SIDE-BY-SIDE LAYOUT FOR CHART + TEXT ---------- */
     .slide-content {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-around;
       flex-wrap: wrap;
       max-width: 1200px;
@@ -108,11 +119,11 @@
       padding: 1.5rem;
       border-radius: 5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      text-align: left; /* inside the box */
       margin: 0 auto;
+      text-align: left; /* text inside the box is left-aligned */
     }
 
-    /* Toggle (details) */
+    /* ---------- DETAILS (TOGGLE) ---------- */
     details {
       margin-top: 1em;
       cursor: pointer;
@@ -122,12 +133,12 @@
       outline: none;
     }
 
-    /* Dark Mode */
+    /* ---------- DARK MODE STYLES ---------- */
     .dark-mode {
       background: #2e2e2e !important;
       color: #f5f5f5;
     }
-    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p {
+    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode ul {
       color: #f0f0f0;
     }
     .dark-mode .text-box {
@@ -140,10 +151,11 @@
       color: #ddd;
     }
 
-    /* Dark Mode Toggle Button */
+    /* ---------- DARK MODE TOGGLE BUTTON ---------- */
     #darkModeToggle {
       position: fixed;
-      top: 15px; right: 15px;
+      top: 15px;
+      right: 15px;
       background: #000;
       color: #fff;
       padding: 10px 15px;
@@ -153,9 +165,11 @@
       z-index: 9999;
       user-select: none;
     }
-    #darkModeToggle:hover { opacity: 0.8; }
+    #darkModeToggle:hover {
+      opacity: 0.8;
+    }
 
-    /* Code Blocks */
+    /* ---------- CODE BLOCKS ---------- */
     pre code {
       display: block;
       padding: 1rem;
@@ -164,7 +178,6 @@
       color: #333;
       font-size: 0.9rem;
     }
-
   </style>
 </head>
 <body>
@@ -176,58 +189,55 @@
     <div class="slides">
 
       <!-- Slide 1: Title & Subtitle -->
-      <section data-background-color="#ffffff">
+      <section data-background-color="#f7f7f7">
         <h1>SPROJ Report</h1>
         <p class="subtitle">Exploring Stock Returns Determinants</p>
         <aside class="notes">
-          Introduce the overall theme. Mention the scope: daily & monthly returns, ML comparisons, event studies, fundamentals.
+          Welcome everyone! This is the opening slide. Briefly mention the project scope and goals.
         </aside>
       </section>
 
       <!-- Slide 2: Overview with Fragments -->
-      <section data-background-color="#f7f7f7">
+      <section data-background-color="#ffffff">
         <h2>Project Overview</h2>
         <ul>
-          <li class="fragment">Daily vs. Monthly Returns</li>
-          <li class="fragment">ML Model Comparisons (CAPM vs. GBM)</li>
+          <li class="fragment">Daily & Monthly Returns Analysis</li>
+          <li class="fragment">Machine Learning Comparisons (CAPM vs. GBM)</li>
           <li class="fragment">Event Studies & Cross-Section Fundamentals</li>
         </ul>
         <aside class="notes">
-          Outline your approach and data sources. 
-          - Data from 2009–2024
-          - 211 companies, 20 countries
-          - Key macro indicators
+          Here, I highlight the main sections of my research. Each bullet is revealed with fragments.
         </aside>
       </section>
 
-      <!-- Slide 3: Daily vs. Monthly Returns (Side-by-Side) -->
-      <section data-background-color="#ffffff">
+      <!-- Slide 3: Daily vs. Monthly Returns (Side-by-Side with Fragments) -->
+      <section data-background-color="#f7f7f7">
         <h2>Daily vs. Monthly Returns</h2>
         <div class="slide-content">
           <div class="chart-area">
             <canvas id="returnsChart"></canvas>
           </div>
           <div class="text-box">
-            <h3>Volatility & Trends</h3>
+            <h3>Volatility & Trend</h3>
             <p class="fragment">
-              Daily returns can be noisy; monthly data reveals broader economic patterns.
+              Daily returns are more volatile. <br>
+              Monthly data reveals clearer trends.
             </p>
             <details class="fragment">
-              <summary>Additional Insights</summary>
+              <summary>Show Additional Analysis</summary>
               <p>
-                <strong>Daily:</strong> Impacted by news & sentiment<br>
-                <strong>Monthly:</strong> Captures macro shifts, smoothing daily fluctuations
+                <strong>Daily Returns:</strong> Often influenced by news, sentiment, 
+                and short-term technicals.<br>
+                <strong>Monthly Returns:</strong> More reflective of macroeconomic factors, 
+                smoothing out daily noise.
               </p>
             </details>
           </div>
         </div>
-        <aside class="notes">
-          You might discuss how daily data aligns with short-term trading vs. monthly data for strategic decisions.
-        </aside>
       </section>
 
-      <!-- Slide 4: ML Model Comparison -->
-      <section data-background-color="#f7f7f7">
+      <!-- Slide 4: ML Model Comparison with a code snippet toggle -->
+      <section data-background-color="#ffffff">
         <h2>Machine Learning Models</h2>
         <div class="slide-content">
           <div class="chart-area">
@@ -236,74 +246,67 @@
           <div class="text-box">
             <h3>CAPM vs. GBM</h3>
             <p>
-              CAPM is strong for short-term daily returns (~70% accuracy). 
-              GBM captures multi-day horizons more effectively (~78%).
+              CAPM excels at short-term predictions (~70% accuracy), while GBM 
+              performs better over multi-day horizons.
             </p>
             <details>
-              <summary>View Code Snippet</summary>
-              <pre><code># Python example using statsmodels
+              <summary>Show Regression Code</summary>
+              <pre><code># Python regression snippet
 import statsmodels.api as sm
-
 model = sm.OLS(y, X).fit()
-print(model.summary())
-              </code></pre>
+print(model.summary())</code></pre>
             </details>
           </div>
         </div>
-        <aside class="notes">
-          Highlight improvements from candlestick-only approaches or naive baselines. 
-          Possibly mention hyperparameter tuning for GBM.
-        </aside>
       </section>
 
       <!-- Slide 5: Event Studies -->
-      <section data-background-color="#ffffff">
+      <section data-background-color="#f7f7f7">
         <h2>Event Studies</h2>
+        <p>Examining abnormal returns around key market events.</p>
         <ul>
-          <li class="fragment">COVID-19 Lockdown: +5% abnormal returns</li>
+          <li class="fragment">COVID-19 Lockdown: +5% abnormal return</li>
           <li class="fragment">Brexit Referendum: -3% immediate shift</li>
-          <li class="fragment">Geopolitical Tensions: Varied impact</li>
+          <li class="fragment">Other Geopolitical Tensions: Mixed Impact</li>
         </ul>
         <aside class="notes">
-          Consider using a timeline chart or a vertical marker for each event. 
-          Show how returns deviate from an expected baseline.
+          Introduce timeline-based approach. Possibly highlight a vertical event line on a chart.
         </aside>
       </section>
 
       <!-- Slide 6: Cross-Section Fundamentals -->
-      <section data-background-color="#f7f7f7">
+      <section data-background-color="#ffffff">
         <h2>Cross-Section Analysis</h2>
-        <p>Evaluating fundamentals (e.g., Revenue, P/E Ratio, Employees) across stocks.</p>
+        <p>Comparing fundamentals (e.g. P/E, Revenue) across multiple stocks.</p>
         <details>
           <summary>Expand for Observations</summary>
           <p>
-            Larger revenues often correlate with stable returns. 
-            P/E ratio influences valuation differences. 
-            Employee count can indicate operational scale.
+            <strong>Revenue:</strong> Larger revenues correlate with stable returns. <br/>
+            <strong>P/E Ratio:</strong> Mixed effect—growth vs. value tilt. <br/>
+            <strong>Employees:</strong> Workforce size can hint at operational scale but not always at profitability.
           </p>
         </details>
         <aside class="notes">
-          You could show a scatter plot of P/E vs. forward returns. 
-          Possibly highlight sector or region differences.
+          Optionally, show a scatter plot with fundamental metrics. Or highlight a sector-based approach.
         </aside>
       </section>
 
-      <!-- Slide 7: Auto-Animate (Model Accuracy) -->
-      <section data-background-color="#ffffff" data-auto-animate>
+      <!-- Slide 7: Auto-Animate Example (Performance Improvement) -->
+      <section data-background-color="#f7f7f7" data-auto-animate>
         <h2>Model Performance</h2>
-        <h3 id="metric">Accuracy: 85%</h3>
+        <h3 id="performanceMetric">Accuracy: 85%</h3>
       </section>
-      <section data-background-color="#ffffff" data-auto-animate>
+      <section data-background-color="#f7f7f7" data-auto-animate>
         <h2>Model Performance</h2>
-        <h3 id="metric">Accuracy: 92%</h3>
+        <h3 id="performanceMetric">Accuracy: 92%</h3>
       </section>
 
       <!-- Slide 8: Conclusion -->
-      <section data-background-color="#f7f7f7">
+      <section data-background-color="#ffffff">
         <h2>Conclusion</h2>
         <p>Thank you for attending! Questions?</p>
         <aside class="notes">
-          Summarize final insights. Possibly mention next steps (additional data, new models, deeper event analysis).
+          Summarize next steps or invite peer feedback here.
         </aside>
       </section>
 
@@ -312,9 +315,10 @@ print(model.summary())
 
   <!-- Reveal.js Script -->
   <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
-  <!-- Custom JS -->
+
+  <!-- Custom JavaScript -->
   <script>
-    // Initialize Reveal.js
+    // Initialize Reveal.js with a 16:9 layout
     Reveal.initialize({
       width: 1920,
       height: 1080,
@@ -323,8 +327,8 @@ print(model.summary())
       slideNumber: true,
       history: false,
       center: true,
-      transition: 'slide', // or 'fade', 'convex', 'concave', 'zoom'
-      transitionSpeed: 'fast'
+      transition: 'slide',
+      transitionSpeed: 'fast',
     });
 
     // Dark Mode Toggle
@@ -332,9 +336,9 @@ print(model.summary())
       document.body.classList.toggle('dark-mode');
     }
 
-    // Chart Initialization on Slide Change
+    // Listen for Slide Changes & Initialize Charts On-Demand
     Reveal.on('slidechanged', function(event) {
-      // #returnsChart: Daily vs Monthly
+      // #returnsChart (Daily vs. Monthly)
       if (event.currentSlide.querySelector('#returnsChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
           const ctx = document.getElementById('returnsChart').getContext('2d');
@@ -351,7 +355,7 @@ print(model.summary())
                 },
                 {
                   label: 'Monthly Returns (%)',
-                  data: [2.2, 2.5, 1.9, 3.4, 2.8],
+                  data: [2.1, 2.4, 1.9, 3.0, 2.5],
                   borderColor: 'orange',
                   fill: false
                 }
@@ -363,11 +367,11 @@ print(model.summary())
         }
       }
 
-      // #mlChart: ML Comparison
+      // #mlChart (ML Comparison)
       if (event.currentSlide.querySelector('#mlChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          const ctx2 = document.getElementById('mlChart').getContext('2d');
-          new Chart(ctx2, {
+          const ctxML = document.getElementById('mlChart').getContext('2d');
+          new Chart(ctxML, {
             type: 'bar',
             data: {
               labels: ['CAPM', 'GBM', 'Candlestick'],
@@ -381,9 +385,7 @@ print(model.summary())
             },
             options: {
               responsive: true,
-              scales: {
-                y: { beginAtZero: true }
-              }
+              scales: { y: { beginAtZero: true } }
             }
           });
           event.currentSlide.dataset.chartInitialized = true;
