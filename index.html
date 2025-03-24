@@ -1,48 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPROJ Report - Interactive Reveal.js</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPROJ Report - Landscape Reveal.js</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- Reveal.js Core Styles -->
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
-  <!-- Reveal.js Theme (choose your favorite) -->
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/simple.css" id="theme">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/reveal.js/dist/reveal.css"
+  />
+  <!-- Reveal.js Theme (try 'white', 'black', 'simple', etc.) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/reveal.js/dist/theme/simple.css"
+    id="theme"
+  />
+
+  <!-- Chart.js for Interactive Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Custom CSS -->
   <style>
-    /* Basic Reset */
-    body, html {
+    /* ---------- GLOBAL RESET & BODY STYLES ---------- */
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', sans-serif;
       height: 100%;
+      /* A subtle background gradient */
+      background: linear-gradient(to right, #f7f7f7, #e7e7e7);
     }
-    /* Reveal Container */
+
+    /* ---------- REVEAL WRAPPER ---------- */
     .reveal {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      /* Subtle drop shadow for the slide container */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    /* Headings & Text (centered) */
+
+    /* ---------- HEADINGS & TEXT ---------- */
     h1, h2, h3, p {
-      text-align: center;
       margin-bottom: 0.5em;
+      text-align: center;
     }
     h1 {
       font-size: 3rem;
       font-weight: 700;
       margin-top: 0.5em;
     }
-    h2 { font-size: 2rem; font-weight: 400; }
-    h3 { font-size: 1.5rem; font-weight: 400; }
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
     p {
       font-size: 1.2rem;
       line-height: 1.6;
       color: #555;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0.5em auto 1em;
     }
     .subtitle {
@@ -52,30 +79,32 @@
       font-weight: 300;
       margin-bottom: 1em;
     }
-    /* Each slide fills the viewport and centers content */
+
+    /* ---------- SLIDE CONTAINER ---------- */
     section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      min-height: 100vh; /* fill entire screen vertically */
       padding: 2rem;
     }
-    /* Chart + Text Layout */
-    .chart-section {
+
+    /* ---------- SIDE-BY-SIDE LAYOUT FOR CHART + TEXT ---------- */
+    .slide-content {
       display: flex;
-      flex-direction: column;
+      flex-direction: row; /* side-by-side on wide screens */
       align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      max-width: 900px;
+      justify-content: space-around;
+      flex-wrap: wrap; /* allows wrap on smaller devices */
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 1rem;
+      gap: 2rem;
     }
     .chart-area {
-      width: 100%;
-      max-width: 600px;
-      height: 300px;
+      width: 600px;
+      max-width: 45%;
+      height: 350px; /* Adjust as needed */
       background: #eee;
       display: flex;
       align-items: center;
@@ -85,206 +114,191 @@
       font-size: 1.2rem;
     }
     .text-box {
+      max-width: 45%;
       background: #fafafa;
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      max-width: 600px;
+      text-align: left; /* text inside can be left-aligned if desired */
       margin: 0 auto;
-      /* Change to center text if desired: */
-      text-align: left;
     }
-    /* Style for toggleable extra content */
+
+    /* ---------- DETAILS (TOGGLE) ---------- */
     details {
-      margin: 1em auto;
-      max-width: 800px;
-      text-align: left;
+      margin-top: 1em;
+      cursor: pointer;
     }
     details summary {
-      cursor: pointer;
       font-weight: bold;
+      outline: none;
+    }
+
+    /* ---------- DARK MODE STYLES ---------- */
+    .dark-mode {
+      background: #2e2e2e !important; /* override gradient */
+      color: #f5f5f5;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p {
+      color: #f0f0f0;
+    }
+    .dark-mode .text-box {
+      background: #3a3a3a;
+      color: #e0e0e0;
+    }
+    .dark-mode .chart-area {
+      background: #555;
+      border-color: #777;
+      color: #ddd;
+    }
+
+    /* ---------- DARK MODE TOGGLE BUTTON ---------- */
+    #darkModeToggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #000;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 9999;
+      user-select: none;
+    }
+    #darkModeToggle:hover {
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
+  <!-- Dark Mode Toggle Button -->
+  <div id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</div>
+
+  <!-- Reveal.js Container -->
   <div class="reveal">
+    <!-- Slides Wrapper -->
     <div class="slides">
+
       <!-- Slide 1: Title -->
       <section data-background-color="#f7f7f7">
         <h1>SPROJ Report</h1>
         <p class="subtitle">Exploring Stock Returns Determinants</p>
       </section>
 
-      <!-- Slide 2: Project Overview with Fragments -->
+      <!-- Slide 2: Overview -->
       <section data-background-color="#ffffff">
         <h2>Project Overview</h2>
         <ul>
           <li class="fragment">Daily & Monthly Returns Analysis</li>
-          <li class="fragment">ML Model Comparisons (CAPM vs. GBM)</li>
+          <li class="fragment">Machine Learning Comparisons (CAPM vs. GBM)</li>
           <li class="fragment">Event Studies & Cross-Section Fundamentals</li>
         </ul>
       </section>
 
-      <!-- Slide 3: Daily Stock Returns with Chart.js -->
+      <!-- Slide 3: Daily Returns Example (Side-by-Side) -->
       <section data-background-color="#f7f7f7">
         <h2>Daily Stock Returns</h2>
-        <div class="chart-section">
-          <!-- Chart placeholder using Chart.js -->
+        <div class="slide-content">
           <div class="chart-area">
             <canvas id="dailyChart"></canvas>
           </div>
           <div class="text-box">
             <h3>Technical Indicators</h3>
             <p>
-              Daily returns are highly volatile. The chart above illustrates key indicators such as RSI and moving averages.
+              Daily returns can be volatile. The chart to the left showcases how
+              RSI, moving averages, and other indicators behave over the week.
             </p>
             <details>
-              <summary>More Details</summary>
-              <p>RSI above 70 signals overbought conditions, while below 30 indicates oversold conditions.</p>
+              <summary>More Insights</summary>
+              <p>
+                RSI above 70 indicates overbought territory, below 30 is oversold.
+                Candlestick patterns can also add context to daily fluctuations.
+              </p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- Slide 4: ML Model Comparison with Bar Chart -->
+      <!-- Slide 4: ML Comparison (Side-by-Side) -->
       <section data-background-color="#ffffff">
         <h2>ML Model Comparison</h2>
-        <div class="chart-section">
+        <div class="slide-content">
           <div class="chart-area">
             <canvas id="mlChart"></canvas>
           </div>
           <div class="text-box">
             <h3>CAPM vs. GBM</h3>
             <p>
-              Comparing models shows CAPM’s effectiveness in short-term predictions, while GBM performs better over longer horizons.
+              Explore how CAPM and GBM differ in accuracy. CAPM excels in short-term
+              horizons, while GBM may capture longer trends more effectively.
             </p>
             <details>
-              <summary>View Analysis</summary>
-              <p>CAPM reached about 71% accuracy on daily returns, whereas GBM improved long-term predictions significantly.</p>
+              <summary>Analysis</summary>
+              <p>
+                CAPM: ~70% accuracy for daily returns <br/>
+                GBM: ~78% for 5-day or 21-day forward returns
+              </p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- Slide 5: Monthly Stock Returns with Chart.js -->
+      <!-- Slide 5: Monthly Returns Example (Side-by-Side) -->
       <section data-background-color="#f7f7f7">
         <h2>Monthly Stock Returns</h2>
-        <div class="chart-section">
+        <div class="slide-content">
           <div class="chart-area">
             <canvas id="monthlyChart"></canvas>
           </div>
           <div class="text-box">
-            <h3>Macroeconomic Impact</h3>
+            <h3>Macroeconomic Indicators</h3>
             <p>
-              Monthly data smooths out daily noise and reveals trends influenced by macroeconomic factors.
-            </p>
-            <details>
-              <summary>Learn More</summary>
-              <p>For example, fluctuations in crude oil and gold prices have statistically significant impacts on monthly returns.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 6: Key Variables and Regression Insights -->
-      <section data-background-color="#ffffff">
-        <h2>Key Variables</h2>
-        <div class="chart-section">
-          <div class="chart-area">
-            Chart Placeholder
-          </div>
-          <div class="text-box">
-            <h3>Regression Results</h3>
-            <p>
-              Regression analysis reveals the relative impact of factors such as crude oil and gold price movements.
-            </p>
-            <details>
-              <summary>Show Regression Code</summary>
-              <pre><code># Python example using statsmodels
-model = sm.OLS(y, X).fit()
-print(model.summary())</code></pre>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 7: Cross-Section Analysis -->
-      <section data-background-color="#f7f7f7">
-        <h2>Cross-Section Analysis</h2>
-        <div class="chart-section">
-          <div class="chart-area">
-            Chart Placeholder
-          </div>
-          <div class="text-box">
-            <h3>Fundamental Indicators</h3>
-            <p>
-              Examining revenue, P/E ratios, and employee counts uncovers key determinants of stock performance.
+              Monthly data smooths out short-term noise and reveals how factors like
+              crude oil or gold correlate with returns.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Slide 8: Event Studies with Fragments -->
+      <!-- Slide 6: Event Studies -->
       <section data-background-color="#ffffff">
         <h2>Event Studies</h2>
-        <div class="chart-section">
-          <div class="chart-area">
-            Chart Placeholder
-          </div>
-          <div class="text-box">
-            <h3>Market Reactions</h3>
-            <p>
-              Event studies demonstrate abnormal returns triggered by key market events.
-            </p>
-            <ul>
-              <li class="fragment">COVID-19 Lockdown: +5% abnormal return</li>
-              <li class="fragment">Brexit Referendum: -3% adjustment</li>
-              <li class="fragment">Geopolitical Tensions: Variable impact</li>
-            </ul>
-          </div>
-        </div>
+        <p>Abnormal returns triggered by specific events.</p>
+        <ul>
+          <li class="fragment">COVID-19 Lockdown: +5% abnormal return</li>
+          <li class="fragment">Brexit Referendum: -3% immediate adjustment</li>
+          <li class="fragment">Other Geopolitical Shifts: Variable Impact</li>
+        </ul>
       </section>
 
-      <!-- Slide 9: Auto-Animate Example (Performance Improvement) -->
+      <!-- Slide 7: Auto-Animate Example (Performance Improvement) -->
       <section data-background-color="#f7f7f7" data-auto-animate>
-        <h2>Model Performance Improvement</h2>
+        <h2>Model Performance</h2>
         <h3 id="performanceMetric">Accuracy: 85%</h3>
       </section>
       <section data-background-color="#f7f7f7" data-auto-animate>
-        <h2>Model Performance Improvement</h2>
+        <h2>Model Performance</h2>
         <h3 id="performanceMetric">Accuracy: 92%</h3>
       </section>
 
-      <!-- Slide 10: Extended Observations -->
+      <!-- Slide 8: Conclusion -->
       <section data-background-color="#ffffff">
-        <h2>Extended Observations</h2>
-        <div class="chart-section">
-          <div class="chart-area">
-            Chart Placeholder
-          </div>
-          <div class="text-box">
-            <h3>Key Takeaways</h3>
-            <p>
-              Further analysis highlights additional correlations and outliers that enrich our understanding of stock returns.
-            </p>
-          </div>
-        </div>
+        <h2>Conclusion</h2>
+        <p>Thank you for attending. We look forward to your questions.</p>
       </section>
 
-      <!-- Slide 11: Conclusion -->
-      <section data-background-color="#f7f7f7">
-        <h2>Conclusion</h2>
-        <p>Final remarks and next steps in research. Thank you for your attention.</p>
-      </section>
     </div>
   </div>
 
-  <!-- Reveal.js Script -->
+  <!-- Reveal.js Core Script -->
   <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
-  <!-- Chart.js Script for interactive charts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom JavaScript -->
   <script>
+    // Initialize Reveal.js with landscape 16:9 settings
     Reveal.initialize({
+      width: 1920,
+      height: 1080,
       controls: true,
       progress: true,
       slideNumber: true,
@@ -292,19 +306,24 @@ print(model.summary())</code></pre>
       center: true,
       transition: 'slide',
       transitionSpeed: 'fast',
-      autoSlide: 0 // Disable auto progression globally
+      autoSlide: 0
     });
 
-    // Listen for slide changes to initialize charts only when needed
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Chart Initialization on Slide Change
     Reveal.on('slidechanged', function(event) {
-      // Daily Stock Returns Chart
+      // Slide with #dailyChart
       if (event.currentSlide.querySelector('#dailyChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          var ctxDaily = document.getElementById('dailyChart').getContext('2d');
-          new Chart(ctxDaily, {
+          const ctx = document.getElementById('dailyChart').getContext('2d');
+          new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+              labels: ['Mon','Tue','Wed','Thu','Fri'],
               datasets: [{
                 label: 'Daily Returns (%)',
                 data: [1.2, -0.5, 3.1, 2.3, -1.2],
@@ -317,43 +336,42 @@ print(model.summary())</code></pre>
           event.currentSlide.dataset.chartInitialized = true;
         }
       }
-      // ML Model Comparison Chart
+
+      // Slide with #mlChart
       if (event.currentSlide.querySelector('#mlChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          var ctxML = document.getElementById('mlChart').getContext('2d');
-          new Chart(ctxML, {
+          const ctx = document.getElementById('mlChart').getContext('2d');
+          new Chart(ctx, {
             type: 'bar',
             data: {
               labels: ['CAPM', 'GBM', 'Candlestick'],
               datasets: [{
                 label: 'Accuracy (%)',
-                data: [71, 78, 65],
-                backgroundColor: [
-                  'rgba(75, 192, 192, 0.5)',
-                  'rgba(255, 159, 64, 0.5)',
-                  'rgba(153, 102, 255, 0.5)'
-                ],
-                borderColor: [
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(153, 102, 255, 1)'
-                ],
+                data: [70, 78, 65],
+                backgroundColor: ['#4BC0C0','#FF9F40','#9966FF'],
+                borderColor: ['#36A2EB','#FF6384','#FFCE56'],
                 borderWidth: 1
               }]
             },
-            options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            options: {
+              responsive: true,
+              scales: {
+                y: { beginAtZero: true }
+              }
+            }
           });
           event.currentSlide.dataset.chartInitialized = true;
         }
       }
-      // Monthly Stock Returns Chart
+
+      // Slide with #monthlyChart
       if (event.currentSlide.querySelector('#monthlyChart')) {
         if (!event.currentSlide.dataset.chartInitialized) {
-          var ctxMonthly = document.getElementById('monthlyChart').getContext('2d');
-          new Chart(ctxMonthly, {
+          const ctx = document.getElementById('monthlyChart').getContext('2d');
+          new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+              labels: ['Jan','Feb','Mar','Apr','May'],
               datasets: [{
                 label: 'Monthly Returns (%)',
                 data: [2.5, 3.2, 1.8, 4.0, 3.5],
@@ -370,6 +388,7 @@ print(model.summary())</code></pre>
   </script>
 </body>
 </html>
+
 
 
 
